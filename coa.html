@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>COA Lookup | Good Morning Peptides</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Zilla+Slab:ital,wght@1,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="announcement"><span><strong>Included free:</strong> BAC water with every order.</span></div>
+  <header class="site-header"><nav class="nav"><a class="brand" href="home.html" aria-label="Good Morning Peptides"><img class="brand-logo" src="assets/GMPLogo.png" alt="" /><span class="brand-fallback"><span>good morning</span><span>peptides</span></span></a><div class="nav-links"><a href="home.html">Home</a><a href="products.html">Products</a><a href="coa.html">COA</a><a href="home.html#faq">FAQ</a></div><div class="nav-actions"><button class="cart-button" type="button" data-cart-open>Cart <span class="cart-count" data-cart-count>0</span></button><a class="button button-primary" href="products.html">Shop now</a></div></nav></header>
+  <main class="coa-page" data-coa-app>
+    <section class="page-hero coa-hero">
+      <p class="eyebrow">CERTIFICATE LOOKUP</p>
+      <h1>Batch documentation.</h1>
+      <p class="lead">Select a product to view all available lot documentation and certificates of analysis.</p>
+    </section>
+
+    <section class="coa-lookup-shell" aria-label="Certificate lookup">
+      <aside class="coa-sidebar" aria-label="Products">
+        <button class="coa-sidebar-item active" type="button" data-product="GLP-3RT">
+          <strong>GLP-3RT</strong>
+          <small>10MG &middot; 30MG &middot; 1 lot</small>
+        </button>
+        <button class="coa-sidebar-item" type="button" data-product="GLP-2TZ">
+          <strong>GLP-2TZ</strong>
+          <small>30MG &middot; 1 lot</small>
+        </button>
+        <button class="coa-sidebar-item" type="button" data-product="BPC-157">
+          <strong>BPC-157</strong>
+          <small>10MG &middot; 1 lot</small>
+        </button>
+        <button class="coa-sidebar-item" type="button" data-product="Mots-C">
+          <strong>Mots-C</strong>
+          <small>50MG &middot; 1 lot</small>
+        </button>
+        <button class="coa-sidebar-item" type="button" data-product="MT2">
+          <strong>MT2</strong>
+          <small>10MG &middot; 1 lot</small>
+        </button>
+        <button class="coa-sidebar-item" type="button" data-product="GHK-Cu">
+          <strong>GHK-Cu</strong>
+          <small>50MG &middot; 1 lot</small>
+        </button>
+      </aside>
+
+      <section class="coa-panel">
+        <div class="coa-panel-header">
+          <h2 data-coa-product-name>GLP-3RT</h2>
+          <p data-coa-lot-count>1 lots on record</p>
+        </div>
+        <div class="coa-lots" data-coa-lots></div>
+      </section>
+    </section>
+
+    <div class="coa-modal-overlay" data-coa-modal hidden>
+      <div class="coa-modal" role="dialog" aria-modal="true" aria-labelledby="coa-modal-title">
+        <div class="coa-modal-top">
+          <div>
+            <h2 id="coa-modal-title" data-modal-product>GLP-3RT</h2>
+            <p data-modal-lot>GMP-2605-GLP3RT30</p>
+          </div>
+          <button class="coa-modal-close" type="button" aria-label="Close COA preview" data-coa-close><span class="ti-x" aria-hidden="true"></span></button>
+        </div>
+        <div class="coa-modal-metrics">
+          <div><span>LOT</span><strong data-modal-metric-lot>GMP-2605-GLP3RT30</strong></div>
+          <div><span>PURITY</span><strong data-modal-purity>99.4%</strong></div>
+          <div><span>IDENTITY</span><strong data-modal-identity>Confirmed</strong></div>
+          <div><span>STATUS</span><strong data-modal-status>Released</strong></div>
+        </div>
+        <div class="coa-pdf-preview">
+          <span class="ti-file-type-pdf" aria-hidden="true"></span>
+          <p>PDF document loads here</p>
+        </div>
+        <div class="coa-modal-footer">
+          <a class="button button-secondary" href="#">Download PDF</a>
+          <a class="button button-primary" href="products.html" data-modal-shop>Shop GLP-3RT</a>
+        </div>
+      </div>
+    </div>
+  </main>
+  <footer class="footer">
+    <div>
+      <a class="brand" href="home.html" aria-label="Good Morning Peptides"><img class="brand-logo" src="assets/GMPLogo.png" alt="" /><span class="brand-fallback"><span>good morning</span><span>peptides</span></span></a>
+      <p>All products are sold strictly for research purposes only. Not for human or veterinary consumption. Must be 21+ to purchase. By using this site you agree to our Terms of Service.</p>
+      <div class="social-links">
+        <a href="#" aria-label="Instagram">IG</a>
+        <a href="#" aria-label="TikTok">TT</a>
+        <a href="#" aria-label="X">X</a>
+      </div>
+    </div>
+    <div><h3>Pages</h3><a href="products.html">Products</a><a href="coa.html">COA Lookup</a><a href="home.html#faq">FAQ</a><a href="#">About Us</a><a href="#">Contact Us</a></div>
+    <div><h3>Legal</h3><a href="#">Terms of Service</a><a href="#">Privacy Policy</a><a href="#">Disclaimer</a><a href="#">Shipping Policy</a><a href="#">Refund Policy</a></div>
+  </footer>
+  <div class="footer-bottom"><span></span><span></span><span>© 2025 Good Morning Peptides. All rights reserved.</span></div>
+  <div class="cart-drawer" data-cart-drawer aria-hidden="true"><div class="cart-panel"><button class="cart-close" type="button" data-cart-close>Close</button><h2>Your Cart</h2><div data-cart-items></div><div class="cart-total"><span>Total</span><strong data-cart-total>$0</strong></div><button class="button button-primary button-wide">Checkout</button><p class="fine-print">Checkout is a front-end demo. Add payment integration when ready.</p></div></div>
+  <script>
+    const coaProducts = {
+      "GLP-3RT": [{ lot: "GMP-2605-GLP3RT30", date: "Jun 2025", strength: "30MG", purity: "99.4%", identity: "Confirmed", status: "Released" }],
+      "GLP-2TZ": [{ lot: "GMP-2605-GLP2TZ30", date: "Jun 2025", strength: "30MG", purity: "99.3%", identity: "Confirmed", status: "Released" }],
+      "BPC-157": [{ lot: "GMP-2605-BPC15710", date: "Jun 2025", strength: "10MG", purity: "99.0%", identity: "Confirmed", status: "Released" }],
+      "Mots-C": [{ lot: "GMP-2605-MOTSC50", date: "Jun 2025", strength: "50MG", purity: "99.2%", identity: "Confirmed", status: "Released" }],
+      "MT2": [{ lot: "GMP-2605-MT210", date: "Jun 2025", strength: "10MG", purity: "98.9%", identity: "Confirmed", status: "Released" }],
+      "GHK-Cu": [{ lot: "GMP-2605-GHKCU50", date: "Jun 2025", strength: "50MG", purity: "99.5%", identity: "Confirmed", status: "Released" }]
+    };
+
+    const coaApp = document.querySelector("[data-coa-app]");
+    const productName = document.querySelector("[data-coa-product-name]");
+    const lotCount = document.querySelector("[data-coa-lot-count]");
+    const lotList = document.querySelector("[data-coa-lots]");
+    const modal = document.querySelector("[data-coa-modal]");
+
+    function openCoaModal(product, lot) {
+      document.querySelector("[data-modal-product]").textContent = product;
+      document.querySelector("[data-modal-lot]").textContent = lot.lot;
+      document.querySelector("[data-modal-metric-lot]").textContent = lot.lot;
+      document.querySelector("[data-modal-purity]").textContent = lot.purity;
+      document.querySelector("[data-modal-identity]").textContent = lot.identity;
+      document.querySelector("[data-modal-status]").textContent = lot.status;
+      document.querySelector("[data-modal-shop]").textContent = `Shop ${product}`;
+      modal.hidden = false;
+    }
+
+    function renderLots(product) {
+      const lots = coaProducts[product] || [];
+      productName.textContent = product;
+      lotCount.textContent = `${lots.length} lots on record`;
+      lotList.innerHTML = lots.map((lot, index) => `
+        <div class="coa-lot-row" role="button" tabindex="0" data-product="${product}" data-lot-index="${index}">
+          <span class="ti-file-certificate" aria-hidden="true"></span>
+          <div class="coa-lot-info">
+            <strong>${lot.lot}</strong>
+            <small>${lot.date} &middot; ${lot.strength}</small>
+          </div>
+          <div class="coa-purity"><strong>${lot.purity}</strong><span>PURITY</span></div>
+          <span class="coa-chip coa-chip-identity">${lot.identity}</span>
+          <span class="coa-chip coa-chip-status">${lot.status}</span>
+          <button class="button button-primary coa-view-button" type="button">View COA</button>
+        </div>
+      `).join("");
+    }
+
+    coaApp?.addEventListener("click", (event) => {
+      const sidebarItem = event.target.closest(".coa-sidebar-item");
+      if (sidebarItem) {
+        document.querySelectorAll(".coa-sidebar-item").forEach((item) => item.classList.remove("active"));
+        sidebarItem.classList.add("active");
+        renderLots(sidebarItem.dataset.product);
+        return;
+      }
+
+      const row = event.target.closest(".coa-lot-row");
+      if (row) {
+        const lots = coaProducts[row.dataset.product] || [];
+        openCoaModal(row.dataset.product, lots[Number(row.dataset.lotIndex)]);
+      }
+    });
+
+    coaApp?.addEventListener("keydown", (event) => {
+      const row = event.target.closest(".coa-lot-row");
+      if (row && (event.key === "Enter" || event.key === " ")) {
+        event.preventDefault();
+        row.click();
+      }
+    });
+
+    modal?.addEventListener("click", (event) => {
+      if (event.target === modal || event.target.closest("[data-coa-close]")) {
+        modal.hidden = true;
+      }
+    });
+
+    renderLots("GLP-3RT");
+  </script>
+  <script src="app.js"></script>
+</body>
+</html>

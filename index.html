@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Researcher Verification | Good Morning Peptides</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Zilla+Slab:ital,wght@1,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="gate-page">
+  <main class="gate-shell">
+    <section class="gate-card">
+      <a class="brand brand-centered" href="index.html" aria-label="Good Morning Peptides">
+        <img class="brand-logo" src="assets/GMPLogo.png" alt="" />
+        <span class="brand-fallback"><span>good morning</span><span>peptides</span></span>
+      </a>
+      <p class="eyebrow">Researcher verification</p>
+      <h1>For qualified researchers only.</h1>
+      <p class="lead">Good Morning Peptides supplies research materials exclusively for laboratory and in-vitro applications.</p>
+
+      <form class="verify-form" id="verify-form">
+        <label class="check-row">
+          <input type="checkbox" id="age-check" />
+          <span>I am at least 21 years of age.</span>
+        </label>
+        <label class="check-row">
+          <input type="checkbox" id="research-check" />
+          <span>I confirm I am a qualified researcher purchasing strictly for in-vitro laboratory research, not for human or veterinary use.</span>
+        </label>
+        <button class="button button-primary button-wide" id="enter-site" type="submit" disabled>Enter Site</button>
+      </form>
+
+      <p class="fine-print">By proceeding, you affirm these statements are true. Products are not intended to diagnose, treat, cure, or prevent disease and have not been evaluated by the U.S. Food and Drug Administration.</p>
+    </section>
+  </main>
+
+  <script>
+    const form = document.querySelector("#verify-form");
+    const checks = [...document.querySelectorAll(".verify-form input")];
+    const button = document.querySelector("#enter-site");
+    function updateGate() {
+      button.disabled = !checks.every((item) => item.checked);
+    }
+    checks.forEach((item) => item.addEventListener("change", updateGate));
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+      if (!button.disabled) window.location.href = "home.html";
+    });
+  </script>
+</body>
+</html>
