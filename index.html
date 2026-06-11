@@ -12,10 +12,10 @@
 <body class="gate-page">
   <main class="gate-shell">
     <section class="gate-card">
-      <a class="brand brand-centered" href="index.html" aria-label="Good Morning Peptides">
+      <span class="brand brand-centered" aria-label="Good Morning Peptides">
         <img class="brand-logo" src="assets/GMPLogo.png" alt="" />
         <span class="brand-fallback"><span>good morning</span><span>peptides</span></span>
-      </a>
+      </span>
       <p class="eyebrow">Researcher verification</p>
       <h1>For qualified researchers only.</h1>
       <p class="lead">Good Morning Peptides supplies research materials exclusively for laboratory and in-vitro applications.</p>
@@ -27,16 +27,22 @@
         </label>
         <label class="check-row">
           <input type="checkbox" id="research-check" />
-          <span>I confirm I am a qualified researcher purchasing strictly for in-vitro laboratory research, not for human or veterinary use.</span>
+          <span>I confirm I am a qualified researcher purchasing <strong>strictly for in-vitro laboratory research</strong>, not for human or veterinary use.</span>
         </label>
         <button class="button button-primary button-wide" id="enter-site" type="submit" disabled>Enter Site</button>
       </form>
 
-      <p class="fine-print">By proceeding, you affirm these statements are true. Products are not intended to diagnose, treat, cure, or prevent disease and have not been evaluated by the U.S. Food and Drug Administration.</p>
+      <p class="fine-print">By proceeding, you affirm these statements are true.<br>Products are not intended to diagnose, treat, cure, or prevent disease and have not been evaluated by the U.S. Food and Drug Administration.</p>
     </section>
   </main>
 
   <script>
+    // Skip gate if already verified within the last 30 days
+    (function() {
+      var v = localStorage.getItem('gmp_verified');
+      if (v && Date.now() < Number(v)) { window.location.replace('home.html'); }
+    })();
+
     const form = document.querySelector("#verify-form");
     const checks = [...document.querySelectorAll(".verify-form input")];
     const button = document.querySelector("#enter-site");
@@ -46,7 +52,10 @@
     checks.forEach((item) => item.addEventListener("change", updateGate));
     form.addEventListener("submit", (event) => {
       event.preventDefault();
-      if (!button.disabled) window.location.href = "home.html";
+      if (!button.disabled) {
+        localStorage.setItem('gmp_verified', Date.now() + 30 * 24 * 60 * 60 * 1000);
+        window.location.href = "home.html";
+      }
     });
   </script>
 </body>
