@@ -17,32 +17,146 @@ function renderCart() {
     }
     node.innerHTML = cart.map((item, index) => `
       <div class="cart-item">
-        <div><strong>${item.name}</strong><p>Qty ${item.qty} · ${money.format(item.price)}</p></div>
+        <div><strong>${escapeClientHtml(item.name)}</strong><p>Qty ${Number(item.qty || 0)} · ${money.format(Number(item.price || 0))}</p></div>
         <button type="button" data-remove-cart="${index}">Remove</button>
       </div>
     `).join("");
   });
   const total = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
   document.querySelectorAll("[data-cart-total]").forEach((node) => node.textContent = money.format(total));
-  bindCartAttestations();
-  updateCartAttestations();
+  renderCheckout();
 }
 
-function updateCartAttestations() {
-  document.querySelectorAll("[data-cart-attestation]").forEach((group) => {
-    const checks = [...group.querySelectorAll("input[type='checkbox']")];
-    const checkout = group.closest(".cart-panel")?.querySelector("[data-checkout-button]");
-    if (checkout) checkout.disabled = !checks.every((item) => item.checked);
-  });
+function cartTotal() {
+  return cart.reduce((sum, item) => sum + Number(item.price || 0) * Number(item.qty || 0), 0);
 }
 
-function bindCartAttestations() {
-  document.querySelectorAll("[data-cart-attestation] input[type='checkbox']").forEach((input) => {
-    if (input.dataset.attestationBound) return;
-    input.dataset.attestationBound = "true";
-    input.addEventListener("change", updateCartAttestations);
-    input.addEventListener("click", () => window.setTimeout(updateCartAttestations, 0));
-  });
+function escapeClientHtml(value) {
+  return String(value || "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+}
+
+function validCheckoutForm(form) {
+  if (!form) return false;
+  const required = [...form.querySelectorAll("[required]")];
+  const hasRequired = required.every((field) => field.type === "checkbox" ? field.checked : field.value.trim());
+  const email = form.elements.email?.value || "";
+  const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim());
+  return cart.length > 0 && hasRequired && emailOk;
+}
+
+function renderCheckout() {
+  const form = document.querySelector("[data-checkout-form]");
+  const summary = document.querySelector("[data-checkout-summary]");
+  const totalNode = document.querySelector("[data-checkout-total]");
+  const empty = document.querySelector("[data-checkout-empty]");
+  const submit = document.querySelector("[data-submit-order]");
+  if (!summary || !totalNode) return;
+
+  if (!cart.length) {
+    summary.innerHTML = "";
+    empty.hidden = false;
+    totalNode.textContent = money.format(0);
+    if (submit) submit.disabled = true;
+    return;
+  }
+
+  empty.hidden = true;
+  summary.innerHTML = cart.map((item) => {
+    const qty = Number(item.qty || 0);
+    const price = Number(item.price || 0);
+    return `<div class="checkout-summary-line">
+      <div><strong>${escapeClientHtml(item.name)}</strong><span>Qty ${qty} · ${money.format(price)}</span></div>
+      <b>${money.format(qty * price)}</b>
+    </div>`;
+  }).join("");
+  totalNode.textContent = money.format(cartTotal());
+  if (submit) submit.disabled = !validCheckoutForm(form);
+}
+
+async function submitCheckout(form) {
+  const error = document.querySelector("[data-checkout-error]");
+  const submit = document.querySelector("[data-submit-order]");
+  if (error) error.hidden = true;
+  if (!validCheckoutForm(form)) {
+    if (error) error.hidden = false;
+    renderCheckout();
+    return;
+  }
+
+  const payload = {
+    customer: {
+      fullName: form.elements.fullName.value.trim(),
+      email: form.elements.email.value.trim(),
+      phone: form.elements.phone.value.trim(),
+    },
+    shipping: {
+      address1: form.elements.address1.value.trim(),
+      address2: form.elements.address2.value.trim(),
+      city: form.elements.city.value.trim(),
+      state: form.elements.state.value.trim(),
+      postalCode: form.elements.postalCode.value.trim(),
+      country: form.elements.country.value.trim(),
+    },
+    orderNote: form.elements.orderNote.value.trim(),
+    website: form.elements.website.value.trim(),
+    attestations: {
+      researchUse: form.elements.researchAttestation.checked,
+      policies: form.elements.policyAttestation.checked,
+    },
+    cart,
+  };
+
+  try {
+    submit.disabled = true;
+    submit.textContent = "Submitting...";
+    const response = await fetch("/api/create-order", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+    });
+    if (!response.ok) throw new Error("Order submission failed");
+    const result = await response.json();
+    sessionStorage.setItem("gmp-pending-order", JSON.stringify({
+      orderNumber: result.orderNumber,
+      total: result.total,
+      paymentMethods: result.paymentMethods || [],
+    }));
+    cart = [];
+    localStorage.removeItem(storageKey);
+    window.location.href = `payment-pending.html?order=${encodeURIComponent(result.orderNumber)}`;
+  } catch (err) {
+    if (error) error.hidden = false;
+    submit.disabled = false;
+    submit.textContent = "Submit Order";
+  }
+}
+
+function renderPaymentPending() {
+  const page = document.querySelector("[data-payment-page]");
+  if (!page) return;
+  const stored = JSON.parse(sessionStorage.getItem("gmp-pending-order") || "{}");
+  const params = new URLSearchParams(window.location.search);
+  const orderNumber = stored.orderNumber || params.get("order") || "Order number unavailable";
+  const total = Number(stored.total || 0);
+  const methods = Array.isArray(stored.paymentMethods) ? stored.paymentMethods : [];
+
+  document.querySelector("[data-payment-order]").textContent = orderNumber;
+  document.querySelector("[data-payment-total]").textContent = money.format(total);
+  const list = document.querySelector("[data-payment-methods]");
+  if (!list) return;
+  if (!methods.length) {
+    list.innerHTML = `<div class="payment-method-card"><strong>Payment instructions</strong><p>Please check your email for available offline payment instructions.</p></div>`;
+    return;
+  }
+  list.innerHTML = methods.map((method) => `<article class="payment-method-card">
+    <strong>${escapeClientHtml(method.label || method.name)}</strong>
+    <p>${escapeClientHtml(method.instructions)}</p>
+  </article>`).join("");
 }
 
 document.addEventListener("click", (event) => {
@@ -73,14 +187,11 @@ document.addEventListener("click", (event) => {
     document.querySelector("[data-cart-drawer]")?.classList.remove("open");
   }
 
-  if (event.target.closest("[data-cart-attestation]")) {
-    window.setTimeout(updateCartAttestations, 0);
-  }
 });
 
 document.addEventListener("change", (event) => {
-  if (event.target.closest("[data-cart-attestation]")) {
-    updateCartAttestations();
+  if (event.target.closest("[data-checkout-form]")) {
+    renderCheckout();
   }
 
   const select = event.target.closest("[data-variant-select]");
@@ -92,6 +203,17 @@ document.addEventListener("change", (event) => {
   const imageSrc = select.selectedOptions[0]?.dataset.image;
   if (priceNode) priceNode.textContent = money.format(price);
   if (image && imageSrc) image.src = imageSrc;
+});
+
+document.addEventListener("input", (event) => {
+  if (event.target.closest("[data-checkout-form]")) renderCheckout();
+});
+
+document.addEventListener("submit", (event) => {
+  const form = event.target.closest("[data-checkout-form]");
+  if (!form) return;
+  event.preventDefault();
+  submitCheckout(form);
 });
 
 document.querySelectorAll("[data-tabs]").forEach((tabs) => {
@@ -106,3 +228,4 @@ document.querySelectorAll("[data-tabs]").forEach((tabs) => {
 });
 
 renderCart();
+renderPaymentPending();

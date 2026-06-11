@@ -1,0 +1,11 @@
+{
+  "name": "good-morning-peptides",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "python3 -m http.server 4173"
+  },
+  "dependencies": {
+    "resend": "^6.12.4"
+  }
+}

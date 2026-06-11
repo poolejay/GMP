@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Checkout | Good Morning Peptides</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Zilla+Slab:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <script>(function(){var v=localStorage.getItem('gmp_verified');if(!v||Date.now()>Number(v)){window.location.replace('index.html');}})();</script>
+  <div class="announcement"><span><strong>Included free:</strong> BAC water with every order.</span></div>
+  <header class="site-header">
+    <nav class="nav">
+      <a class="brand" href="home.html" aria-label="Good Morning Peptides"><img class="brand-logo" src="assets/GMPLogo.png" alt="" /><span class="brand-fallback"><span>good morning</span><span>peptides</span></span></a>
+      <div class="nav-links"><a href="home.html">Home</a><a href="products.html">Products</a><a href="coa.html">COA</a><a href="faq.html">FAQ</a></div>
+      <div class="nav-actions"><button class="cart-button" type="button" data-cart-open>Cart <span class="cart-count" data-cart-count>0</span></button><a class="button button-primary" href="products.html">Shop now</a></div>
+    </nav>
+  </header>
+
+  <main class="checkout-page">
+    <section class="checkout-hero">
+      <p class="policy-kicker">MANUAL PAYMENT REVIEW</p>
+      <h1>Checkout</h1>
+      <p>Your order will be created with payment pending verification. Orders process after payment is confirmed.</p>
+    </section>
+
+    <section class="checkout-shell" data-checkout-page>
+      <form class="checkout-form-card" data-checkout-form novalidate>
+        <section>
+          <p class="mini-label">Contact Information</p>
+          <div class="checkout-grid">
+            <label class="checkout-field">Full name<input name="fullName" autocomplete="name" required /></label>
+            <label class="checkout-field">Email<input name="email" type="email" autocomplete="email" required /></label>
+            <label class="checkout-field">Phone optional<input name="phone" autocomplete="tel" /></label>
+          </div>
+        </section>
+
+        <section>
+          <p class="mini-label">Shipping Information</p>
+          <div class="checkout-grid">
+            <label class="checkout-field checkout-field-wide">Address line 1<input name="address1" autocomplete="address-line1" required /></label>
+            <label class="checkout-field checkout-field-wide">Address line 2 optional<input name="address2" autocomplete="address-line2" /></label>
+            <label class="checkout-field">City<input name="city" autocomplete="address-level2" required /></label>
+            <label class="checkout-field">State<input name="state" autocomplete="address-level1" required /></label>
+            <label class="checkout-field">ZIP / postal code<input name="postalCode" autocomplete="postal-code" required /></label>
+            <label class="checkout-field">Country<input name="country" autocomplete="country-name" value="United States" required /></label>
+          </div>
+        </section>
+
+        <section>
+          <p class="mini-label">Shipping or Order Note</p>
+          <label class="checkout-field checkout-field-wide">Optional note<textarea name="orderNote" rows="3" placeholder="Do not include medical, dosing, treatment, injection, personal-use, or health information."></textarea></label>
+          <label class="checkout-honeypot" aria-hidden="true">Website<input name="website" tabindex="-1" autocomplete="off" /></label>
+        </section>
+
+        <section class="checkout-attestation">
+          <label><input name="researchAttestation" type="checkbox" required /> <span>I confirm these products are for laboratory research use only and are not intended for human or animal consumption.</span></label>
+          <label><input name="policyAttestation" type="checkbox" required /> <span>I agree to the <a href="terms.html">Terms of Service</a>, <a href="privacy.html">Privacy Policy</a>, <a href="disclaimer.html">Disclaimer</a>, <a href="shipping.html">Shipping Policy</a>, and <a href="refund.html">Refund Policy</a>.</span></label>
+        </section>
+
+        <p class="checkout-error" data-checkout-error hidden>We could not submit your order. Please review your information and try again.</p>
+        <button class="button button-primary button-wide" type="submit" data-submit-order disabled>Submit Order</button>
+      </form>
+
+      <aside class="checkout-summary-card">
+        <p class="mini-label">Order Summary</p>
+        <div data-checkout-empty hidden>
+          <p>Your cart is empty.</p>
+          <a class="button button-primary button-wide" href="products.html">View Products</a>
+        </div>
+        <div data-checkout-summary></div>
+        <div class="checkout-total"><span>Total due</span><strong data-checkout-total>$0</strong></div>
+        <p class="fine-print">Payment instructions are sent after order submission. Do not send card details through this site.</p>
+      </aside>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div><a class="brand" href="home.html" aria-label="Good Morning Peptides"><img class="brand-logo" src="assets/GMPLogo.png" alt="" /><span class="brand-fallback"><span>good morning</span><span>peptides</span></span></a><p>All products are sold strictly for research purposes only. Not for human or veterinary consumption. Must be 21+ to purchase. By using this site you agree to our <a href="terms.html">Terms of Service</a>.</p></div>
+    <div><h3>Pages</h3><a href="products.html">Products</a><a href="coa.html">COA Lookup</a><a href="faq.html">FAQ</a><a href="#">About Us</a><a href="#">Contact Us</a></div>
+    <div><h3>Legal</h3><a href="terms.html">Terms of Service</a><a href="privacy.html">Privacy Policy</a><a href="disclaimer.html">Disclaimer</a><a href="shipping.html">Shipping Policy</a><a href="refund.html">Refund Policy</a></div>
+  </footer>
+  <div class="footer-bottom"><span></span><span></span><span>© 2025 Good Morning Peptides. All rights reserved.</span></div>
+  <div class="cart-drawer" data-cart-drawer aria-hidden="true"><div class="cart-panel"><button class="cart-close" type="button" data-cart-close>Close</button><h2>Your Cart</h2><div data-cart-items></div><div class="cart-total"><span>Total</span><strong data-cart-total>$0</strong></div><a class="button button-primary button-wide" href="checkout.html">Checkout</a><p class="fine-print">Orders are submitted for manual payment review.</p></div></div>
+  <script src="app.js?v=checkout-1"></script>
+</body>
+</html>
