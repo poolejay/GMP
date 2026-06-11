@@ -24,6 +24,25 @@ function renderCart() {
   });
   const total = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
   document.querySelectorAll("[data-cart-total]").forEach((node) => node.textContent = money.format(total));
+  bindCartAttestations();
+  updateCartAttestations();
+}
+
+function updateCartAttestations() {
+  document.querySelectorAll("[data-cart-attestation]").forEach((group) => {
+    const checks = [...group.querySelectorAll("input[type='checkbox']")];
+    const checkout = group.closest(".cart-panel")?.querySelector("[data-checkout-button]");
+    if (checkout) checkout.disabled = !checks.every((item) => item.checked);
+  });
+}
+
+function bindCartAttestations() {
+  document.querySelectorAll("[data-cart-attestation] input[type='checkbox']").forEach((input) => {
+    if (input.dataset.attestationBound) return;
+    input.dataset.attestationBound = "true";
+    input.addEventListener("change", updateCartAttestations);
+    input.addEventListener("click", () => window.setTimeout(updateCartAttestations, 0));
+  });
 }
 
 document.addEventListener("click", (event) => {
@@ -53,9 +72,17 @@ document.addEventListener("click", (event) => {
   if (event.target.closest("[data-cart-close]") || event.target.matches("[data-cart-drawer]")) {
     document.querySelector("[data-cart-drawer]")?.classList.remove("open");
   }
+
+  if (event.target.closest("[data-cart-attestation]")) {
+    window.setTimeout(updateCartAttestations, 0);
+  }
 });
 
 document.addEventListener("change", (event) => {
+  if (event.target.closest("[data-cart-attestation]")) {
+    updateCartAttestations();
+  }
+
   const select = event.target.closest("[data-variant-select]");
   if (!select) return;
   const card = select.closest("article");

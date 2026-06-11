@@ -1191,6 +1191,153 @@ h1, h2, h3 {
   color: var(--navy);
   font-weight: 800;
 }
+.cart-attestation {
+  margin: 18px 0;
+  display: grid;
+  gap: 10px;
+}
+.cart-attestation label {
+  display: grid;
+  grid-template-columns: 18px 1fr;
+  gap: 10px;
+  align-items: start;
+  color: var(--muted);
+  font-size: .78rem;
+  line-height: 1.45;
+}
+.cart-attestation input {
+  width: 16px;
+  height: 16px;
+  margin-top: 2px;
+  accent-color: var(--navy);
+}
+.cart-attestation a {
+  color: var(--navy);
+  font-weight: 800;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.policy-page {
+  background: var(--cream);
+}
+.policy-hero {
+  padding: clamp(56px, 8vw, 88px) 28px 40px;
+  text-align: center;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(221, 132, 16, .08), transparent 34%),
+    #fff;
+  border-bottom: 1px solid var(--line);
+}
+.policy-kicker {
+  margin: 0 0 12px;
+  color: var(--orange);
+  font-family: Inter, system-ui, sans-serif;
+  font-size: .72rem;
+  font-weight: 800;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+}
+.policy-hero h1 {
+  margin: 0;
+  color: var(--navy);
+  font-family: "Zilla Slab", Georgia, serif;
+  font-size: clamp(2.5rem, 5vw, 4.75rem);
+  line-height: .96;
+}
+.policy-hero p {
+  max-width: 680px;
+  margin: 18px auto 0;
+  color: var(--muted);
+  font-size: 1rem;
+  line-height: 1.65;
+}
+.policy-updated {
+  display: inline-flex;
+  margin-top: 18px;
+  padding: 8px 14px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--cream);
+  color: var(--navy);
+  font-size: .78rem;
+  font-weight: 700;
+}
+.policy-shell {
+  width: min(100%, 1120px);
+  margin: 0 auto;
+  padding: 56px 28px 84px;
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: 28px;
+  align-items: start;
+}
+.policy-sidebar {
+  position: sticky;
+  top: 110px;
+  display: grid;
+  gap: 8px;
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: var(--round);
+  background: #fff;
+  box-shadow: var(--soft-shadow);
+}
+.policy-sidebar a {
+  display: block;
+  padding: 9px 10px;
+  border-radius: 10px;
+  color: var(--muted);
+  font-size: .88rem;
+  font-weight: 700;
+}
+.policy-sidebar a:hover {
+  background: var(--cream);
+  color: var(--navy);
+}
+.policy-document {
+  padding: clamp(28px, 4vw, 52px);
+  border: 1px solid var(--line);
+  border-radius: var(--round);
+  background: #fff;
+  box-shadow: var(--soft-shadow);
+}
+.policy-document section + section {
+  margin-top: 34px;
+  padding-top: 30px;
+  border-top: 1px solid var(--line);
+}
+.policy-document h2 {
+  margin: 0 0 12px;
+  color: var(--navy);
+  font-family: Inter, system-ui, sans-serif;
+  font-size: 1.12rem;
+  font-weight: 800;
+  line-height: 1.25;
+}
+.policy-document p,
+.policy-document li {
+  color: var(--muted);
+  font-size: .96rem;
+  line-height: 1.75;
+}
+.policy-document p {
+  margin: 0 0 14px;
+}
+.policy-document ul {
+  margin: 12px 0 0;
+  padding-left: 1.2rem;
+}
+.policy-callout {
+  margin: 22px 0;
+  padding: 18px 20px;
+  border-left: 4px solid var(--orange);
+  border-radius: 12px;
+  background: var(--cream);
+}
+.policy-callout strong {
+  color: var(--navy);
+}
 
 .gate-page {
   min-height: 100vh;
@@ -1321,10 +1468,32 @@ h1, h2, h3 {
   font-size: .76rem;
   line-height: 1.55;
 }
+.gate-legal-links {
+  margin-top: 16px;
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+.gate-legal-links a {
+  color: var(--navy);
+  font-size: .76rem;
+  font-weight: 800;
+}
 .button:disabled {
   opacity: .48;
   cursor: not-allowed;
   transform: none;
+}
+
+@media (max-width: 860px) {
+  .policy-shell {
+    grid-template-columns: 1fr;
+    padding: 38px 20px 64px;
+  }
+  .policy-sidebar {
+    position: static;
+  }
 }
 
 @media (max-width: 980px) {
@@ -1388,6 +1557,13 @@ h1, h2, h3 {
   }
   .footer > div:first-child {
     grid-column: 1 / -1;
+  }
+  .policy-shell {
+    grid-template-columns: 1fr;
+    padding: 38px 20px 64px;
+  }
+  .policy-sidebar {
+    position: static;
   }
 }
 
@@ -1591,6 +1767,12 @@ h1, h2, h3 {
 }
 
 @media (max-width: 560px) {
+  .policy-hero {
+    padding: 44px 20px 32px;
+  }
+  .policy-document {
+    padding: 24px 20px;
+  }
   .gate-shell {
     padding: 18px;
   }

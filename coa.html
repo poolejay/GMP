@@ -86,13 +86,13 @@
   <footer class="footer">
     <div>
       <a class="brand" href="home.html" aria-label="Good Morning Peptides"><img class="brand-logo" src="assets/GMPLogo.png" alt="" /><span class="brand-fallback"><span>good morning</span><span>peptides</span></span></a>
-      <p>All products are sold strictly for research purposes only. Not for human or veterinary consumption. Must be 21+ to purchase. By using this site you agree to our Terms of Service.</p>
+      <p>All products are sold strictly for research purposes only. Not for human or veterinary consumption. Must be 21+ to purchase. By using this site you agree to our <a href="terms.html">Terms of Service</a>.</p>
     </div>
     <div><h3>Pages</h3><a href="products.html">Products</a><a href="coa.html">COA Lookup</a><a href="faq.html">FAQ</a><a href="#">About Us</a><a href="#">Contact Us</a></div>
-    <div><h3>Legal</h3><a href="#">Terms of Service</a><a href="#">Privacy Policy</a><a href="#">Disclaimer</a><a href="#">Shipping Policy</a><a href="#">Refund Policy</a></div>
+    <div><h3>Legal</h3><a href="terms.html">Terms of Service</a><a href="privacy.html">Privacy Policy</a><a href="disclaimer.html">Disclaimer</a><a href="shipping.html">Shipping Policy</a><a href="refund.html">Refund Policy</a></div>
   </footer>
   <div class="footer-bottom"><span></span><span></span><span>© 2025 Good Morning Peptides. All rights reserved.</span></div>
-  <div class="cart-drawer" data-cart-drawer aria-hidden="true"><div class="cart-panel"><button class="cart-close" type="button" data-cart-close>Close</button><h2>Your Cart</h2><div data-cart-items></div><div class="cart-total"><span>Total</span><strong data-cart-total>$0</strong></div><button class="button button-primary button-wide">Checkout</button><p class="fine-print">Checkout is a front-end demo. Add payment integration when ready.</p></div></div>
+  <div class="cart-drawer" data-cart-drawer aria-hidden="true"><div class="cart-panel"><button class="cart-close" type="button" data-cart-close>Close</button><h2>Your Cart</h2><div data-cart-items></div><div class="cart-total"><span>Total</span><strong data-cart-total>$0</strong></div><div class="cart-attestation" data-cart-attestation><label><input type="checkbox" /> <span>I confirm these products are for laboratory research use only and are not intended for human or animal consumption.</span></label><label><input type="checkbox" /> <span>I agree to the <a href="terms.html">Terms of Service</a>, <a href="privacy.html">Privacy Policy</a>, <a href="disclaimer.html">Disclaimer</a>, <a href="shipping.html">Shipping Policy</a>, and <a href="refund.html">Refund Policy</a>.</span></label></div><button class="button button-primary button-wide" data-checkout-button disabled>Checkout</button><p class="fine-print">Checkout is a front-end demo. Add payment integration when ready.</p></div></div>
   <script>
     const coaProducts = {
       "GLP-3RT": [{ lot: "GMP-2605-GLP3RT30", date: "Jun 2025", strength: "30MG", purity: "99.4%", identity: "Confirmed", status: "Released" }],
@@ -171,6 +171,6 @@
 
     renderLots("GLP-3RT");
   </script>
-  <script src="app.js"></script>
+  <script src="app.js?v=legal-1"></script>
 </body>
 </html>

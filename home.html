@@ -216,8 +216,8 @@
         <details><summary>What purity level are your peptides and how is it verified?<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary><p>Our peptides are tested to 99%+ purity via HPLC analysis. Every batch undergoes third-party analytical review and results are published as a Certificate of Analysis available on our COA page by lot number.</p></details>
         <details><summary>What is a Certificate of Analysis (COA) and how do I read it?<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary><p>A COA is a document from an independent laboratory that confirms the identity, purity, and concentration of a research compound. It shows the test methods used, the results, and whether the batch meets spec. You can look up any supported lot on our COA page.</p></details>
         <details><summary>What comes free with every order?<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary><p>Every order ships with a free 30mL vial of Bacteriostatic Water as a laboratory preparation supply, included at no extra charge.</p></details>
-        <details><summary>How should research materials be stored?<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary><p>Lyophilized peptides should be stored in a cool, dry environment away from direct light. Long-term storage in a freezer at -20°C is recommended. Once reconstituted, store refrigerated and use within the recommended window.</p></details>
-        <details><summary>How long is the lyophilized product stable?<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary><p>Properly stored lyophilized peptides are generally stable for 24 months or longer. Reconstituted peptides should be used within 28 days when stored refrigerated at 4°C.</p></details>
+        <details><summary>How should research materials be stored?<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary><p>Lyophilized peptides should be stored in a cool, dry environment away from direct light. Long-term storage in a freezer at -20°C is recommended. Prepared research materials should be handled according to internal laboratory protocols and applicable documentation.</p></details>
+        <details><summary>How long is the lyophilized product stable?<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary><p>Properly stored lyophilized peptides are generally stable for 24 months or longer. Refer to lot documentation and institutional protocols for prepared material handling timelines.</p></details>
         <details><summary>How fast do you ship?<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary><p>Orders placed before 1PM local time typically ship same business day. All orders include tracking and are packed for secure transit.</p></details>
         <details><summary>Do you ship internationally?<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary><p>At this time we ship within the United States only. International shipping is not currently available.</p></details>
         <details><summary>Can I verify a lot number?<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary><p>Yes. Visit our COA Lookup page and enter your lot number to pull the corresponding Certificate of Analysis for your batch.</p></details>
@@ -230,10 +230,10 @@
     <div>
       <a class="brand" href="home.html" aria-label="Good Morning Peptides"><img class="brand-logo" src="assets/GMPLogo.png" alt="" /><span class="brand-fallback"><span>good morning</span><span>peptides</span></span></a>
       <span class="footer-brand-line">Rise and Research.</span>
-      <p>All products are sold strictly for research purposes only. Not for human or veterinary consumption. Must be 21+ to purchase. By using this site you agree to our Terms of Service.</p>
+      <p>All products are sold strictly for research purposes only. Not for human or veterinary consumption. Must be 21+ to purchase. By using this site you agree to our <a href="terms.html">Terms of Service</a>.</p>
     </div>
     <div><h3>Pages</h3><a href="products.html">Products</a><a href="coa.html">COA Lookup</a><a href="faq.html">FAQ</a><a href="#">About Us</a><a href="#">Contact Us</a></div>
-    <div><h3>Legal</h3><a href="#">Terms of Service</a><a href="#">Privacy Policy</a><a href="#">Disclaimer</a><a href="#">Shipping Policy</a><a href="#">Refund Policy</a></div>
+    <div><h3>Legal</h3><a href="terms.html">Terms of Service</a><a href="privacy.html">Privacy Policy</a><a href="disclaimer.html">Disclaimer</a><a href="shipping.html">Shipping Policy</a><a href="refund.html">Refund Policy</a></div>
   </footer>
   <div class="footer-bottom"><span></span><span></span><span>© 2025 Good Morning Peptides. All rights reserved.</span></div>
 
@@ -243,10 +243,14 @@
       <h2>Your Cart</h2>
       <div data-cart-items></div>
       <div class="cart-total"><span>Total</span><strong data-cart-total>$0</strong></div>
-      <button class="button button-primary button-wide">Checkout</button>
+      <div class="cart-attestation" data-cart-attestation>
+        <label><input type="checkbox" /> <span>I confirm these products are for laboratory research use only and are not intended for human or animal consumption.</span></label>
+        <label><input type="checkbox" /> <span>I agree to the <a href="terms.html">Terms of Service</a>, <a href="privacy.html">Privacy Policy</a>, <a href="disclaimer.html">Disclaimer</a>, <a href="shipping.html">Shipping Policy</a>, and <a href="refund.html">Refund Policy</a>.</span></label>
+      </div>
+      <button class="button button-primary button-wide" data-checkout-button disabled>Checkout</button>
       <p class="fine-print">Checkout is a front-end demo. Add payment integration when ready.</p>
     </div>
   </div>
-  <script src="app.js"></script>
+  <script src="app.js?v=legal-1"></script>
 </body>
 </html>
