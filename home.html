@@ -6,11 +6,12 @@
   <title>Good Morning Peptides | Research Peptides & Lab Essentials</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Zilla+Slab:ital,wght@1,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <script>(function(){var v=localStorage.getItem('gmp_verified');if(!v||Date.now()>Number(v)){window.location.replace('index.html');}})();</script>
+  <div class="announcement"><span><strong>Included free:</strong> BAC water with every order.</span></div>
   <div class="page-top">
     <header class="site-header clean-header">
       <nav class="nav">
@@ -28,35 +29,45 @@
       </nav>
     </header>
 
-    <section class="page-hero home-welcome-hero home-hero" style="background: #F4F7FF;">
-      <p class="eyebrow">Good Morning Peptides</p>
-      <h1>Research peptides. Proof on every batch.</h1>
-      <p class="lead">Research-use peptide materials with batch documentation, COA visibility, and a catalog experience built for qualified laboratory teams.</p>
-      <div class="hero-actions">
-        <a class="button button-primary" href="products.html">Browse Catalog</a>
-        <a class="button button-secondary" href="coa.html">View COA Lookup</a>
-      </div>
-      <p class="fine-print">For laboratory research use only. Not for human or animal consumption.</p>
-      <div class="stat-row">
-        <div><strong>99%+</strong><span>Verified Purity</span></div>
-        <div><strong>100%</strong><span>Batches With Public COA</span></div>
+    <section class="home-hero">
+      <div class="home-hero-inner">
+        <div class="home-hero-copy">
+          <p class="home-hero-eyebrow">RESEARCH-GRADE PEPTIDES</p>
+          <h1>Purity you can see. Quality you can <mark>verify.</mark></h1>
+          <p class="home-hero-subhead">Research-use peptides with batch-specific COAs, third-party analytical testing, and transparent documentation.</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="products.html">Browse Catalog</a>
+            <a class="button button-secondary" href="coa.html">View COA Lookup</a>
+          </div>
+          <p class="fine-print">For laboratory research use only. Not for human or animal consumption.</p>
+        </div>
+        <div class="hero-visual" aria-label="Research peptide vials with certificate preview">
+          <div class="hero-vial-stage">
+            <img class="hero-vial hero-vial-main" src="assets/BPC.png" alt="BPC-157 research peptide vial" />
+            <img class="hero-vial hero-vial-side" src="assets/3RT_10MG.png" alt="GLP-3RT research peptide vial" />
+            <aside class="coa-preview-card" aria-label="Certificate of Analysis preview">
+              <p>CERTIFICATE OF ANALYSIS</p>
+              <h2>BPC-157 · LOT GMP-2605</h2>
+              <dl>
+                <div><dt>Purity</dt><dd>99.4%</dd></div>
+                <div><dt>Method</dt><dd>HPLC + MS</dd></div>
+                <div><dt>Status</dt><dd>Released</dd></div>
+              </dl>
+              <footer><span aria-hidden="true">✓</span> Verified by independent lab</footer>
+            </aside>
+          </div>
+        </div>
       </div>
     </section>
   </div>
 
   <main>
     <section class="trust-strip" aria-label="Good Morning Peptides trust highlights">
-      <span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 5 5L20 7"/></svg>Free Bacteriostatic Water</span>
-      <span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 5 5L20 7"/></svg>Third-Party COA Included</span>
-      <span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 5 5L20 7"/></svg>Batch Tested</span>
-      <span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 5 5L20 7"/></svg>Ships Same Day</span>
-      <span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 5 5L20 7"/></svg>Secure Checkout</span>
-    </section>
-
-    <section class="free-banner">
-      <img src="assets/BAC_TRA.png" alt="Bacteriostatic water included with orders" />
-      <strong>Every order ships with <mark>FREE</mark> Bacteriostatic Water (30mL).</strong>
-      <em>Included as a lab supply for qualified research use.</em>
+      <span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 5 5L20 7"/></svg>99%+ Verified Purity</span>
+      <span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 5 5L20 7"/></svg>Third-Party Tested</span>
+      <span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 5 5L20 7"/></svg>Batch COAs</span>
+      <span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 5 5L20 7"/></svg>Secure Packaging</span>
+      <span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 5 5L20 7"/></svg>Research Use Only</span>
     </section>
 
     <section class="catalog-section" id="products">
@@ -79,6 +90,7 @@
                 <option value="GLP-3RT 30MG" data-price="149" data-image="assets/3RT_30MG.png">30MG - $149</option>
               </select>
             </label>
+            <span class="product-badge">COA Available</span>
             <div><span>From</span><strong>$79</strong></div>
             <button class="button button-primary" data-add-cart>Add to Cart</button>
           </div>
@@ -94,6 +106,7 @@
                 <option value="GLP-2TZ 30MG" data-price="199" data-image="assets/2TZ_30MG.png">30MG - $199</option>
               </select>
             </label>
+            <span class="product-badge">COA Available</span>
             <div><span>From</span><strong>$149</strong></div>
             <button class="button button-primary" data-add-cart>Add to Cart</button>
           </div>
@@ -108,6 +121,7 @@
                 <option value="BPC-157 10MG" data-price="89">10MG - $89</option>
               </select>
             </label>
+            <span class="product-badge">Batch Tested</span>
             <div><span>From</span><strong>$89</strong></div>
             <button class="button button-primary" data-add-cart>Add to Cart</button>
           </div>
@@ -122,6 +136,7 @@
                 <option value="MOTS-c 50MG" data-price="119">50MG - $119</option>
               </select>
             </label>
+            <span class="product-badge">Batch Tested</span>
             <div><span>From</span><strong>$119</strong></div>
             <button class="button button-primary" data-add-cart>Add to Cart</button>
           </div>
@@ -157,6 +172,14 @@
       </div>
     </section>
 
+    <section class="free-banner">
+      <img src="assets/BAC_TRA.png" alt="Bacteriostatic water included with orders" />
+      <div>
+        <span>Included with every order</span>
+        <strong>30mL BAC water supplied as a laboratory preparation supply.</strong>
+      </div>
+    </section>
+
     <section class="why-gmp-section">
       <div class="section-heading">
         <p class="mini-label">Why Good Morning Peptides</p>
@@ -164,22 +187,18 @@
       </div>
       <div class="bento-grid">
         <article>
-          <span class="why-numeral">01</span>
           <h3>Third-Party Tested Every Batch</h3>
           <p>Product lots are reviewed with outside analytical documentation before release.</p>
         </article>
         <article>
-          <span class="why-numeral">02</span>
           <h3>Free Bacteriostatic Water Included</h3>
           <p>Every order includes BAC water as a laboratory supply for qualified research use.</p>
         </article>
         <article>
-          <span class="why-numeral">03</span>
           <h3>Batch COA Available Online</h3>
           <p>Supported lots include Certificates of Analysis that can be reviewed by batch.</p>
         </article>
         <article>
-          <span class="why-numeral">04</span>
           <h3>Ships Same or Next Business Day</h3>
           <p>Orders are packed promptly with secure handling and clear fulfillment updates.</p>
         </article>
@@ -189,7 +208,7 @@
     <section class="faq-clean" id="faq">
       <p class="mini-label">FAQ</p>
       <h2>Before you order.</h2>
-      <p class="faq-subtitle">Everything you need to know before ordering.</p>
+      <p class="faq-subtitle">Answers about research-use policy, batch documentation, shipping, and support.</p>
       <div class="accordion">
         <details><summary>Are products for human use?<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary><p>No. All products sold by Good Morning Peptides are strictly for in-vitro laboratory and research use only. They are not intended for human or veterinary consumption, injection, or any clinical application.</p></details>
         <details><summary>What purity level are your peptides and how is it verified?<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary><p>Our peptides are tested to 99%+ purity via HPLC analysis. Every batch undergoes third-party analytical review and results are published as a Certificate of Analysis available on our COA page by lot number.</p></details>
