@@ -2002,3 +2002,126 @@ h1, h2, h3 {
     font-size: .88rem;
   }
 }
+
+/* ============================================================
+   HOME v2 — Section rhythm + editorial proof section
+   Added on top of the existing system. Safe to remove as a block.
+   Rhythm: hero → navy strip → cream BAC → cloud-blue why →
+           white catalog → morning-yellow proof → white FAQ → navy footer
+   ============================================================ */
+:root {
+  --band-blue: #eaf1f9;    /* cloud blue section band */
+  --band-yellow: #faf1de;  /* morning yellow section band */
+  --orange-deep: #c97407;  /* hover state for sunrise CTA */
+}
+
+/* --- Sunrise CTA: orange primary, used sparingly (hero + proof) --- */
+.button-sunrise {
+  background: var(--orange);
+  color: var(--deep);
+  font-weight: 800;
+  box-shadow: 0 12px 24px rgba(221, 132, 16, .28);
+}
+.button-sunrise:hover {
+  background: var(--orange-deep);
+  color: #fff;
+}
+
+/* --- Why GMP: cloud blue band, left-aligned split heading --- */
+.why-gmp-section {
+  background: var(--band-blue);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+.section-heading--split {
+  max-width: 1060px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr);
+  align-items: end;
+  gap: 20px 48px;
+  text-align: left;
+}
+.section-heading--split .lead {
+  margin: 0 0 6px;
+  justify-self: end;
+  max-width: 40ch;
+  font-size: .96rem;
+}
+
+/* --- Proof section: morning yellow band, editorial left alignment --- */
+.trust-proof-section {
+  background: var(--band-yellow);
+  border-top: 1px solid #efe3c8;
+  border-bottom: 1px solid #efe3c8;
+}
+.trust-proof-section .proof-header {
+  margin: 0;
+  max-width: 620px;
+  text-align: left;
+}
+.trust-proof-section .proof-header::before {
+  content: "";
+  display: block;
+  width: 44px;
+  height: 4px;
+  margin-bottom: 18px;
+  border-radius: 2px;
+  background: var(--orange);
+}
+.trust-proof-section .proof-grid {
+  align-items: start;
+  margin-top: 30px;
+}
+.trust-proof-section .proof-card {
+  padding: 34px 26px 28px;
+  border: none;
+}
+.trust-proof-section .proof-card h3 {
+  max-width: calc(100% - 58px);
+}
+.trust-proof-section .proof-number {
+  position: absolute;
+  top: 10px;
+  right: 16px;
+  margin: 0;
+  font-family: "Zilla Slab", Georgia, serif;
+  font-size: 4.2rem;
+  font-weight: 700;
+  line-height: 1;
+  color: rgba(221, 132, 16, .20);
+  pointer-events: none;
+}
+.trust-proof-section .proof-cta {
+  max-width: 1060px;
+  margin: 34px auto 0;
+  text-align: left;
+}
+
+/* Sunrise stagger: cards ascend left → right on wide screens */
+@media (min-width: 981px) {
+  .trust-proof-section .proof-header,
+  .trust-proof-section .proof-grid {
+    max-width: 1060px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .trust-proof-section .proof-header { margin-bottom: 0; }
+  .trust-proof-section .proof-grid { margin-top: 38px; }
+  .trust-proof-section .proof-card:nth-child(1) { margin-top: 48px; }
+  .trust-proof-section .proof-card:nth-child(2) { margin-top: 24px; }
+  .trust-proof-section .proof-card:nth-child(3) { margin-top: 0; }
+}
+
+/* Keep split heading readable on small screens */
+@media (max-width: 860px) {
+  .section-heading--split {
+    grid-template-columns: 1fr;
+    align-items: start;
+  }
+  .section-heading--split .lead { justify-self: start; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
