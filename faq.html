@@ -3,113 +3,124 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>FAQ | Good Morning Peptides</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Zilla+Slab:wght@700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Coming Soon | Good Morning Peptides</title>
+  <style>
+    :root {
+      --navy: #0c0247;
+      --orange: #dd8410;
+      --cream: #fbf5e8;
+      --ink: #24164f;
+      --muted: #6f6a85;
+      --line: rgba(12, 2, 71, .14);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 78% 18%, rgba(221, 132, 16, .14), transparent 30%),
+        linear-gradient(180deg, #fff 0%, var(--cream) 100%);
+    }
+
+    main {
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 32px 18px;
+    }
+
+    .soon-card {
+      width: min(100%, 760px);
+      padding: clamp(30px, 6vw, 56px);
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      background: rgba(255, 255, 255, .86);
+      box-shadow: 0 26px 80px rgba(12, 2, 71, .12);
+      text-align: center;
+    }
+
+    .logo {
+      width: min(280px, 80vw);
+      height: auto;
+      margin: 0 auto 30px;
+      display: block;
+    }
+
+    .eyebrow {
+      margin: 0 0 12px;
+      color: var(--orange);
+      font-size: .76rem;
+      font-weight: 900;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0;
+      color: var(--navy);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(2.7rem, 8vw, 5.7rem);
+      line-height: .92;
+      letter-spacing: 0;
+    }
+
+    .lead {
+      max-width: 590px;
+      margin: 22px auto 0;
+      color: var(--muted);
+      font-size: clamp(1rem, 2.3vw, 1.16rem);
+      line-height: 1.7;
+      font-weight: 650;
+    }
+
+    .note {
+      width: fit-content;
+      max-width: 100%;
+      margin: 30px auto 0;
+      padding: 12px 16px;
+      border-radius: 999px;
+      background: var(--navy);
+      color: #fff;
+      font-size: .86rem;
+      font-weight: 800;
+    }
+
+    .fine {
+      max-width: 560px;
+      margin: 30px auto 0;
+      color: var(--muted);
+      font-size: .82rem;
+      line-height: 1.6;
+    }
+
+    @media (max-width: 560px) {
+      .soon-card {
+        border-radius: 22px;
+      }
+
+      .note {
+        border-radius: 18px;
+      }
+    }
+  </style>
 </head>
 <body>
-  <script>(function(){var v=localStorage.getItem('gmp_verified');if(!v||Date.now()>Number(v)){window.location.replace('index.html');}})();</script>
-  <div class="announcement"><span><strong>Included free:</strong> BAC water with every order.</span></div>
-  <header class="site-header">
-    <nav class="nav">
-      <a class="brand" href="home.html" aria-label="Good Morning Peptides"><img class="brand-logo" src="assets/GMPLogo.png" alt="" /><span class="brand-fallback"><span>good morning</span><span>peptides</span></span></a>
-      <div class="nav-links">
-        <a href="home.html">Home</a>
-        <a href="products.html">Products</a>
-        <a href="coa.html">COA</a>
-        <a href="faq.html">FAQ</a>
-      </div>
-      <div class="nav-actions">
-        <button class="cart-button" type="button" data-cart-open>Cart <span class="cart-count" data-cart-count>0</span></button>
-        <a class="button button-primary" href="products.html">Shop now</a>
-      </div>
-    </nav>
-  </header>
-
   <main>
-    <section class="page-hero">
-      <p class="eyebrow">FAQ</p>
-      <h1>Before you order.</h1>
-      <p class="lead">Answers about research-use policy, batch documentation, shipping, and support.</p>
-    </section>
-
-    <section class="faq-clean faq-page-list">
-      <div class="accordion">
-
-        <details open>
-          <summary>Are products for human use?<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
-          <p>No. All products sold by Good Morning Peptides are strictly for in-vitro laboratory and research use only. They are not intended for human or veterinary consumption, injection, or any clinical application.</p>
-        </details>
-
-        <details>
-          <summary>What purity level are your peptides and how is it verified?<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
-          <p>Our peptides are tested to 99%+ purity via HPLC analysis. Every batch undergoes third-party analytical review and results are published as a Certificate of Analysis available on our COA page by lot number.</p>
-        </details>
-
-        <details>
-          <summary>What is a Certificate of Analysis (COA) and how do I read it?<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
-          <p>A COA is a document from an independent laboratory that confirms the identity, purity, and concentration of a research compound. It shows the test methods used, the results, and whether the batch meets spec. You can look up any supported lot on our <a href="coa.html" style="color:var(--orange);font-weight:600;">COA page</a>.</p>
-        </details>
-
-        <details>
-          <summary>What comes free with every order?<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
-          <p>Every order ships with a free 30mL vial of Bacteriostatic Water as a laboratory preparation supply, included at no extra charge.</p>
-        </details>
-
-        <details>
-          <summary>How should research materials be stored?<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
-          <p>Lyophilized peptides should be stored in a cool, dry environment away from direct light. Long-term storage in a freezer at -20°C is recommended. Prepared research materials should be handled according to internal laboratory protocols and applicable documentation.</p>
-        </details>
-
-        <details>
-          <summary>How long is the lyophilized product stable?<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
-          <p>Properly stored lyophilized peptides are generally stable for 24 months or longer. Refer to lot documentation and institutional protocols for prepared material handling timelines.</p>
-        </details>
-
-        <details>
-          <summary>How fast do you ship?<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
-          <p>Orders placed before 1PM local time typically ship same business day. All orders include tracking and are packed for secure transit.</p>
-        </details>
-
-        <details>
-          <summary>Do you ship internationally?<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
-          <p>At this time we ship within the United States only. International shipping is not currently available.</p>
-        </details>
-
-        <details>
-          <summary>Can I verify a lot number?<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
-          <p>Yes. Visit our <a href="coa.html" style="color:var(--orange);font-weight:600;">COA Lookup page</a> to pull the Certificate of Analysis for your exact batch by lot number.</p>
-        </details>
-
-        <details>
-          <summary>What is your return and refund policy?<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
-          <p>Due to the nature of research materials we do not accept returns. If your order arrives damaged or incorrect please contact us within 48 hours of delivery and we will make it right.</p>
-        </details>
-
-      </div>
-    </section>
-
-    <section class="trust-strip" aria-label="Trust highlights">
-      <span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 5 5L20 7"/></svg>99%+ Verified Purity</span>
-      <span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 5 5L20 7"/></svg>Third-Party COA Included</span>
-      <span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 5 5L20 7"/></svg>Free Bacteriostatic Water</span>
-      <span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 5 5L20 7"/></svg>Ships Same Day</span>
+    <section class="soon-card" aria-labelledby="coming-soon-title">
+      <img class="logo" src="/assets/GMPLogo.png" alt="Good Morning Peptides" />
+      <p class="eyebrow">Good Morning Peptides</p>
+      <h1 id="coming-soon-title">Coming Soon.</h1>
+      <p class="lead">We are getting the research catalog ready and will be back online shortly.</p>
+      <p class="note">Thank you for your patience.</p>
+      <p class="fine">Products are intended for qualified laboratory research use only. Not for human or animal consumption.</p>
     </section>
   </main>
-
-  <footer class="footer">
-    <div>
-      <a class="brand" href="home.html" aria-label="Good Morning Peptides"><img class="brand-logo" src="assets/GMPLogo.png" alt="" /><span class="brand-fallback"><span>good morning</span><span>peptides</span></span></a>
-      <p>All products are sold strictly for research purposes only. Not for human or veterinary consumption. Must be 21+ to purchase. By using this site you agree to our <a href="terms.html">Terms of Service</a>.</p>
-    </div>
-    <div><h3>Pages</h3><a href="products.html">Products</a><a href="coa.html">COA Lookup</a><a href="faq.html">FAQ</a><a href="#">About Us</a><a href="#">Contact Us</a></div>
-    <div><h3>Legal</h3><a href="terms.html">Terms of Service</a><a href="privacy.html">Privacy Policy</a><a href="disclaimer.html">Disclaimer</a><a href="shipping.html">Shipping Policy</a><a href="refund.html">Refund Policy</a></div>
-  </footer>
-  <div class="footer-bottom"><span></span><span></span><span>© 2025 Good Morning Peptides. All rights reserved.</span></div>
-
-  <div class="cart-drawer" data-cart-drawer aria-hidden="true"><div class="cart-panel"><button class="cart-close" type="button" data-cart-close>Close</button><h2>Your Cart</h2><div data-cart-items></div><div class="cart-total"><span>Total</span><strong data-cart-total>$0</strong></div><a class="button button-primary button-wide" href="checkout.html">Checkout</a><p class="fine-print">Orders are submitted for manual payment review.</p></div></div>
-  <script src="app.js?v=checkout-1"></script>
 </body>
 </html>

@@ -3,132 +3,124 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Products | Good Morning Peptides</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Zilla+Slab:wght@700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Coming Soon | Good Morning Peptides</title>
+  <style>
+    :root {
+      --navy: #0c0247;
+      --orange: #dd8410;
+      --cream: #fbf5e8;
+      --ink: #24164f;
+      --muted: #6f6a85;
+      --line: rgba(12, 2, 71, .14);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 78% 18%, rgba(221, 132, 16, .14), transparent 30%),
+        linear-gradient(180deg, #fff 0%, var(--cream) 100%);
+    }
+
+    main {
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 32px 18px;
+    }
+
+    .soon-card {
+      width: min(100%, 760px);
+      padding: clamp(30px, 6vw, 56px);
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      background: rgba(255, 255, 255, .86);
+      box-shadow: 0 26px 80px rgba(12, 2, 71, .12);
+      text-align: center;
+    }
+
+    .logo {
+      width: min(280px, 80vw);
+      height: auto;
+      margin: 0 auto 30px;
+      display: block;
+    }
+
+    .eyebrow {
+      margin: 0 0 12px;
+      color: var(--orange);
+      font-size: .76rem;
+      font-weight: 900;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0;
+      color: var(--navy);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(2.7rem, 8vw, 5.7rem);
+      line-height: .92;
+      letter-spacing: 0;
+    }
+
+    .lead {
+      max-width: 590px;
+      margin: 22px auto 0;
+      color: var(--muted);
+      font-size: clamp(1rem, 2.3vw, 1.16rem);
+      line-height: 1.7;
+      font-weight: 650;
+    }
+
+    .note {
+      width: fit-content;
+      max-width: 100%;
+      margin: 30px auto 0;
+      padding: 12px 16px;
+      border-radius: 999px;
+      background: var(--navy);
+      color: #fff;
+      font-size: .86rem;
+      font-weight: 800;
+    }
+
+    .fine {
+      max-width: 560px;
+      margin: 30px auto 0;
+      color: var(--muted);
+      font-size: .82rem;
+      line-height: 1.6;
+    }
+
+    @media (max-width: 560px) {
+      .soon-card {
+        border-radius: 22px;
+      }
+
+      .note {
+        border-radius: 18px;
+      }
+    }
+  </style>
 </head>
 <body>
-  <script>(function(){var v=localStorage.getItem('gmp_verified');if(!v||Date.now()>Number(v)){window.location.replace('index.html');}})();</script>
-  <div class="announcement"><span><strong>Included free:</strong> BAC water with every order.</span></div>
-  <header class="site-header">
-    <nav class="nav">
-      <a class="brand" href="home.html" aria-label="Good Morning Peptides"><img class="brand-logo" src="assets/GMPLogo.png" alt="" /><span class="brand-fallback"><span>good morning</span><span>peptides</span></span></a>
-      <div class="nav-links"><a href="home.html">Home</a><a href="products.html">Products</a><a href="coa.html">COA</a><a href="faq.html">FAQ</a></div>
-      <div class="nav-actions"><button class="cart-button" type="button" data-cart-open>Cart <span class="cart-count" data-cart-count>0</span></button><a class="button button-primary" href="products.html">Shop now</a></div>
-    </nav>
-  </header>
   <main>
-    <section class="page-hero products-hero">
-      <p class="eyebrow">RESEARCH CATALOG</p>
-      <h1>Research-grade peptides. Verified by batch.</h1>
-      <p class="lead">Every product ships with lot-specific documentation and third-party analytical review. Know exactly what you're ordering before it arrives.</p>
-    </section>
-
-    <section class="section catalog-grid" id="catalog">
-      <article class="catalog-product">
-        <div class="pack-product-shot"><img data-product-image src="assets/3RT_10MG.png" alt="GLP-3RT research peptide vial" /></div>
-        <p class="product-category">RESEARCH PEPTIDE</p>
-        <h2>GLP-3RT</h2>
-        <p>Research peptide supplied for laboratory catalog workflows. Lot-verified documentation available.</p>
-        <label class="variant-select">Strength
-          <select data-variant-select>
-            <option value="GLP-3RT 10MG" data-price="79" data-image="assets/3RT_10MG.png">10MG - $79</option>
-            <option value="GLP-3RT 30MG" data-price="149" data-image="assets/3RT_30MG.png">30MG - $149</option>
-          </select>
-        </label>
-        <div class="product-card-meta"><span>Batch Tested</span><a href="coa.html">View COA</a></div>
-        <div class="catalog-product-foot"><strong>$79</strong><button class="button button-primary" data-add-cart>Add to Cart</button></div>
-      </article>
-      <article class="catalog-product">
-        <div class="pack-product-shot"><img data-product-image src="assets/2TZ_30MG.png" alt="GLP-2TZ research peptide vial" /></div>
-        <p class="product-category">RESEARCH PEPTIDE</p>
-        <h2>GLP-2TZ</h2>
-        <p>Research peptide supplied with third-party analytical review and batch documentation.</p>
-        <label class="variant-select">Strength
-          <select data-variant-select>
-            <option value="GLP-2TZ 20MG" data-price="149" data-image="assets/2TZ_30MG.png">20MG - $149</option>
-            <option value="GLP-2TZ 30MG" data-price="199" data-image="assets/2TZ_30MG.png">30MG - $199</option>
-          </select>
-        </label>
-        <div class="product-card-meta"><span>Batch Tested</span><a href="coa.html">View COA</a></div>
-        <div class="catalog-product-foot"><strong>$149</strong><button class="button button-primary" data-add-cart>Add to Cart</button></div>
-      </article>
-      <article class="catalog-product">
-        <div class="pack-product-shot"><img src="assets/BPC.png" alt="BPC-157 10MG research peptide vial" /></div>
-        <p class="product-category">RESEARCH PEPTIDE</p>
-        <h2>BPC-157</h2>
-        <p>Synthetic research peptide supplied for laboratory research purposes only.</p>
-        <label class="variant-select">Strength
-          <select data-variant-select>
-            <option value="BPC-157 10MG" data-price="89">10MG - $89</option>
-          </select>
-        </label>
-        <div class="product-card-meta"><span>COA Available</span><a href="coa.html">View COA</a></div>
-        <div class="catalog-product-foot"><strong>$89</strong><button class="button button-primary" data-add-cart>Add to Cart</button></div>
-      </article>
-      <article class="catalog-product">
-        <div class="pack-product-shot product-placeholder"><strong>MT-2</strong><span>Render coming soon</span></div>
-        <p class="product-category">RESEARCH PEPTIDE</p>
-        <h2>MT-2</h2>
-        <p>Catalog research peptide with lot-specific documentation and analytical review.</p>
-        <label class="variant-select">Strength
-          <select data-variant-select>
-            <option value="MT-2 10MG" data-price="69">10MG - $69</option>
-          </select>
-        </label>
-        <div class="product-card-meta"><span>COA Available</span><a href="coa.html">View COA</a></div>
-        <div class="catalog-product-foot"><strong>$69</strong><button class="button button-primary" data-add-cart>Add to Cart</button></div>
-      </article>
-      <article class="catalog-product">
-        <div class="pack-product-shot product-placeholder"><strong>GHK-Cu</strong><span>Render coming soon</span></div>
-        <p class="product-category">RESEARCH PEPTIDE</p>
-        <h2>GHK-Cu</h2>
-        <p>Catalog research peptide supplied with batch tracking and documentation.</p>
-        <label class="variant-select">Strength
-          <select data-variant-select>
-            <option value="GHK-Cu 50MG" data-price="99">50MG - $99</option>
-          </select>
-        </label>
-        <div class="product-card-meta"><span>COA Available</span><a href="coa.html">View COA</a></div>
-        <div class="catalog-product-foot"><strong>$99</strong><button class="button button-primary" data-add-cart>Add to Cart</button></div>
-      </article>
-      <article class="catalog-product">
-        <div class="pack-product-shot"><img src="assets/MOTS.png" alt="MOTS-c 50MG research peptide vial" /></div>
-        <p class="product-category">RESEARCH PEPTIDE</p>
-        <h2>MOTS-c</h2>
-        <p>Research peptide supplied with batch-specific COA access and third-party review.</p>
-        <label class="variant-select">Strength
-          <select data-variant-select>
-            <option value="MOTS-c 50MG" data-price="119">50MG - $119</option>
-          </select>
-        </label>
-        <div class="product-card-meta"><span>Batch Tested</span><a href="coa.html">View COA</a></div>
-        <div class="catalog-product-foot"><strong>$119</strong><button class="button button-primary" data-add-cart>Add to Cart</button></div>
-      </article>
-    </section>
-
-    <section class="section storage-guide">
-      <div class="section-heading"><p class="eyebrow">EVERY ORDER INCLUDES</p><h2>More than just the vial.</h2><p class="lead">Each shipment is packed with everything a qualified research team needs to get started.</p></div>
-      <div class="guide-grid">
-        <article><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7 12 3l8 4v10l-8 4-8-4Z"/><path d="m4 7 8 4 8-4"/><path d="M12 11v10"/></svg><h3>Free Bacteriostatic Water</h3><p>Every order ships with a 30mL BAC water vial included at no charge as a laboratory preparation supply.</p></article>
-        <article><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3h8l5 5v13H7z"/><path d="M15 3v5h5"/><path d="M9 13h6"/><path d="M9 17h4"/></svg><h3>Lot-Specific COA</h3><p>A Certificate of Analysis for your exact batch is available online by lot number before and after your order ships.</p></article>
-        <article><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 20 7v5c0 5-3.4 8.1-8 9-4.6-.9-8-4-8-9V7z"/><path d="m8.5 12.5 2.2 2.2 4.8-5"/></svg><h3>Third-Party Verified</h3><p>Every batch is reviewed by an independent analytical laboratory before it is made available in the catalog.</p></article>
-      </div>
+    <section class="soon-card" aria-labelledby="coming-soon-title">
+      <img class="logo" src="/assets/GMPLogo.png" alt="Good Morning Peptides" />
+      <p class="eyebrow">Good Morning Peptides</p>
+      <h1 id="coming-soon-title">Coming Soon.</h1>
+      <p class="lead">We are getting the research catalog ready and will be back online shortly.</p>
+      <p class="note">Thank you for your patience.</p>
+      <p class="fine">Products are intended for qualified laboratory research use only. Not for human or animal consumption.</p>
     </section>
   </main>
-
-  <footer class="footer">
-    <div>
-      <a class="brand" href="home.html" aria-label="Good Morning Peptides"><img class="brand-logo" src="assets/GMPLogo.png" alt="" /><span class="brand-fallback"><span>good morning</span><span>peptides</span></span></a>
-      <p>All products are sold strictly for research purposes only. Not for human or veterinary consumption. Must be 21+ to purchase. By using this site you agree to our <a href="terms.html">Terms of Service</a>.</p>
-    </div>
-    <div><h3>Pages</h3><a href="products.html">Products</a><a href="coa.html">COA Lookup</a><a href="faq.html">FAQ</a><a href="#">About Us</a><a href="#">Contact Us</a></div>
-    <div><h3>Legal</h3><a href="terms.html">Terms of Service</a><a href="privacy.html">Privacy Policy</a><a href="disclaimer.html">Disclaimer</a><a href="shipping.html">Shipping Policy</a><a href="refund.html">Refund Policy</a></div>
-  </footer>
-  <div class="footer-bottom"><span></span><span></span><span>© 2025 Good Morning Peptides. All rights reserved.</span></div>
-  <div class="cart-drawer" data-cart-drawer aria-hidden="true"><div class="cart-panel"><button class="cart-close" type="button" data-cart-close>Close</button><h2>Your Cart</h2><div data-cart-items></div><div class="cart-total"><span>Total</span><strong data-cart-total>$0</strong></div><a class="button button-primary button-wide" href="checkout.html">Checkout</a><p class="fine-print">Orders are submitted for manual payment review.</p></div></div>
-  <script src="app.js?v=checkout-1"></script>
 </body>
 </html>
