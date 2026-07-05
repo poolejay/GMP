@@ -12,6 +12,11 @@ const productIdByName = {
 };
 
 let cart = parseCart();
+let checkoutConfig = {
+  googleMapsApiKey: "",
+  addressVerificationRequired: false,
+};
+const addressVerificationFieldNames = new Set(["address1", "city", "state", "postalCode", "country"]);
 
 function parseCart() {
   try {
@@ -137,7 +142,9 @@ function validCheckoutForm(form) {
   const hasRequired = required.every((field) => field.type === "checkbox" ? field.checked : field.value.trim());
   const email = form.elements.email?.value || "";
   const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim());
-  return cart.length > 0 && hasRequired && emailOk;
+  const addressMode = form.dataset.addressVerification || "manual";
+  const addressOk = addressMode !== "pending" && (addressMode !== "required" || form.elements.addressVerified?.value === "true");
+  return cart.length > 0 && hasRequired && emailOk && addressOk;
 }
 
 function renderCheckout() {
@@ -177,7 +184,13 @@ async function submitCheckout(form) {
   const submit = document.querySelector("[data-submit-order]");
   if (error) error.hidden = true;
   if (!validCheckoutForm(form)) {
-    if (error) error.hidden = false;
+    if (error) {
+      const addressMode = form.dataset.addressVerification || "manual";
+      error.textContent = (addressMode === "pending" || (addressMode === "required" && form.elements.addressVerified?.value !== "true"))
+        ? "Select a verified shipping address from the address suggestions before placing the order."
+        : "We could not submit your order. Please review your information and try again.";
+      error.hidden = false;
+    }
     renderCheckout();
     return;
   }
@@ -196,6 +209,8 @@ async function submitCheckout(form) {
       state: form.elements.state.value.trim(),
       postalCode: form.elements.postalCode.value.trim(),
       country: form.elements.country.value.trim(),
+      addressVerified: form.elements.addressVerified?.value === "true",
+      googlePlaceId: form.elements.googlePlaceId?.value || "",
     },
     orderNote: form.elements.orderNote.value.trim(),
     website: form.elements.website.value.trim(),
@@ -232,6 +247,131 @@ async function submitCheckout(form) {
     submit.disabled = false;
     submit.textContent = "Place Order";
   }
+}
+
+function updateAddressVerificationState(form, state, message) {
+  const panel = form?.querySelector("[data-address-verify-panel]");
+  const status = form?.querySelector("[data-address-status]");
+  const badge = form?.querySelector("[data-address-badge]");
+  if (!panel || !status || !badge) return;
+  panel.dataset.state = state;
+  status.textContent = message;
+  badge.textContent = state === "verified" ? "Verified" : state === "required" ? "Required" : state === "pending" ? "Checking" : "Manual";
+}
+
+function setAddressVerified(form, verified, placeId = "") {
+  if (!form?.elements.addressVerified) return;
+  form.elements.addressVerified.value = verified ? "true" : "false";
+  if (form.elements.googlePlaceId) form.elements.googlePlaceId.value = placeId;
+  updateAddressVerificationState(
+    form,
+    verified ? "verified" : (form.dataset.addressVerification === "required" ? "required" : "manual"),
+    verified
+      ? "Address selected from Google Maps."
+      : (form.dataset.addressVerification === "required"
+        ? "Start typing your address and select one of the Google suggestions."
+        : "Manual address entry is available for local testing."),
+  );
+  renderCheckout();
+}
+
+function addressComponent(place = {}, type, useShortName = false) {
+  const component = (place.address_components || []).find((entry) => entry.types.includes(type));
+  if (!component) return "";
+  return useShortName ? component.short_name : component.long_name;
+}
+
+function fillAddressFromPlace(form, place) {
+  if (!place?.address_components?.length) {
+    setAddressVerified(form, false);
+    return;
+  }
+
+  const streetNumber = addressComponent(place, "street_number");
+  const route = addressComponent(place, "route");
+  const address1 = [streetNumber, route].filter(Boolean).join(" ") || place.formatted_address || "";
+  const city = addressComponent(place, "locality")
+    || addressComponent(place, "postal_town")
+    || addressComponent(place, "sublocality")
+    || addressComponent(place, "administrative_area_level_2");
+  const state = addressComponent(place, "administrative_area_level_1", true);
+  const postalCode = addressComponent(place, "postal_code");
+  const country = addressComponent(place, "country");
+
+  form.elements.address1.value = address1;
+  form.elements.city.value = city;
+  form.elements.state.value = state;
+  form.elements.postalCode.value = postalCode;
+  form.elements.country.value = country || "United States";
+  setAddressVerified(form, Boolean(address1 && city && state && postalCode), place.place_id || "");
+}
+
+function loadGoogleMapsScript(apiKey) {
+  if (window.google?.maps?.places) return Promise.resolve();
+  if (window.gmpGoogleMapsPromise) return window.gmpGoogleMapsPromise;
+
+  window.gmpGoogleMapsPromise = new Promise((resolve, reject) => {
+    window.initGmpGooglePlaces = resolve;
+    const script = document.createElement("script");
+    script.src = `https://maps.googleapis.com/maps/api/js?key=${encodeURIComponent(apiKey)}&libraries=places&v=weekly&callback=initGmpGooglePlaces`;
+    script.async = true;
+    script.defer = true;
+    script.onerror = () => reject(new Error("Google Maps failed to load"));
+    document.head.appendChild(script);
+  });
+
+  return window.gmpGoogleMapsPromise;
+}
+
+async function initAddressVerification() {
+  const form = document.querySelector("[data-checkout-form]");
+  if (!form) return;
+
+  form.dataset.addressVerification = "pending";
+  updateAddressVerificationState(form, "pending", "Checking address verification options.");
+  renderCheckout();
+
+  try {
+    const response = await fetch("/api/config");
+    if (response.ok) checkoutConfig = await response.json();
+  } catch {
+    checkoutConfig = { googleMapsApiKey: "", addressVerificationRequired: false };
+  }
+
+  if (!checkoutConfig.googleMapsApiKey) {
+    form.dataset.addressVerification = "manual";
+    updateAddressVerificationState(form, "manual", "Manual address entry is available for local testing.");
+    renderCheckout();
+    return;
+  }
+
+  form.dataset.addressVerification = checkoutConfig.addressVerificationRequired ? "required" : "manual";
+  setAddressVerified(form, false);
+
+  try {
+    await loadGoogleMapsScript(checkoutConfig.googleMapsApiKey);
+    const autocomplete = new google.maps.places.Autocomplete(form.elements.address1, {
+      componentRestrictions: { country: ["us"] },
+      fields: ["address_components", "formatted_address", "place_id"],
+      types: ["address"],
+    });
+    autocomplete.addListener("place_changed", () => {
+      const place = autocomplete.getPlace();
+      fillAddressFromPlace(form, place);
+    });
+  } catch {
+    form.dataset.addressVerification = checkoutConfig.addressVerificationRequired ? "required" : "manual";
+    setAddressVerified(form, false);
+    updateAddressVerificationState(
+      form,
+      checkoutConfig.addressVerificationRequired ? "required" : "manual",
+      checkoutConfig.addressVerificationRequired
+        ? "Address verification could not load. Refresh the page to try again."
+        : "Address verification is unavailable right now. Manual entry is enabled.",
+    );
+  }
+
+  renderCheckout();
 }
 
 function orderNumberFromLocation() {
@@ -391,7 +531,8 @@ document.addEventListener("click", (event) => {
 });
 
 document.addEventListener("change", (event) => {
-  if (event.target.closest("[data-checkout-form]")) {
+  const checkoutForm = event.target.closest("[data-checkout-form]");
+  if (checkoutForm) {
     renderCheckout();
   }
 
@@ -407,7 +548,13 @@ document.addEventListener("change", (event) => {
 });
 
 document.addEventListener("input", (event) => {
-  if (event.target.closest("[data-checkout-form]")) renderCheckout();
+  const checkoutForm = event.target.closest("[data-checkout-form]");
+  if (!checkoutForm) return;
+  if (checkoutForm.dataset.addressVerification === "required" && addressVerificationFieldNames.has(event.target.name)) {
+    setAddressVerified(checkoutForm, false);
+    return;
+  }
+  renderCheckout();
 });
 
 document.addEventListener("submit", (event) => {
@@ -431,3 +578,4 @@ document.querySelectorAll("[data-tabs]").forEach((tabs) => {
 renderCart();
 renderPaymentPending();
 renderOrderConfirmation();
+initAddressVerification();

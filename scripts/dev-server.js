@@ -64,6 +64,10 @@ const server = http.createServer(async (req, res) => {
       return handleApi(api("api/orders/create.js"), req, res, url.searchParams);
     }
 
+    if (pathname === "/api/config") {
+      return handleApi(api("api/config.js"), req, res, url.searchParams);
+    }
+
     const publicOrderMatch = pathname.match(/^\/api\/orders\/([^/]+)$/);
     if (publicOrderMatch) {
       const query = new URLSearchParams(url.searchParams);
