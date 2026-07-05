@@ -1527,6 +1527,337 @@ h1, h2, h3 {
   font-size: .9rem;
 }
 
+.manual-payment-box,
+.confirmation-panel,
+.admin-toolbar,
+.admin-order-card {
+  border: 1px solid var(--line);
+  border-radius: var(--round);
+  background: #fff;
+  box-shadow: var(--soft-shadow);
+}
+
+.manual-payment-box {
+  padding: 20px;
+}
+
+.manual-payment-box h2 {
+  margin: 4px 0 8px;
+  color: var(--navy);
+  font-family: "Zilla Slab", Georgia, serif;
+  font-size: 1.5rem;
+  line-height: 1;
+}
+
+.manual-payment-box p:last-child {
+  margin-bottom: 0;
+}
+
+.summary-mini-line,
+.status-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--line);
+  color: var(--muted);
+  font-size: .88rem;
+  font-weight: 700;
+}
+
+.summary-mini-line strong,
+.status-row strong {
+  color: var(--navy);
+  text-align: right;
+}
+
+.cart-page-card {
+  min-height: 280px;
+}
+
+.cart-page-card [data-cart-page-empty] {
+  display: grid;
+  gap: 18px;
+  justify-items: start;
+}
+
+.cart-page-items {
+  display: grid;
+  gap: 14px;
+}
+
+.cart-page-item {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto auto;
+  align-items: center;
+  gap: 18px;
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: var(--round);
+  background: #fff;
+}
+
+.cart-page-product {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-width: 0;
+}
+
+.cart-page-product img {
+  width: 62px;
+  height: 62px;
+  object-fit: contain;
+  border-radius: 14px;
+  background: var(--cream);
+}
+
+.cart-page-product h2 {
+  margin: 0;
+  color: var(--navy);
+  font-size: 1rem;
+}
+
+.cart-page-product p {
+  margin-top: 4px;
+  font-size: .8rem;
+}
+
+.cart-qty-control {
+  display: grid;
+  grid-template-columns: 34px 34px 34px;
+  align-items: center;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.cart-qty-control button,
+.cart-remove-link,
+.admin-actions button,
+.admin-filters button {
+  border: 0;
+  color: var(--navy);
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.cart-qty-control button {
+  height: 34px;
+  background: #fff;
+  font-size: 1rem;
+}
+
+.cart-qty-control span {
+  color: var(--navy);
+  text-align: center;
+  font-weight: 800;
+}
+
+.cart-remove-link {
+  background: transparent;
+  color: var(--muted);
+  font-size: .82rem;
+}
+
+[aria-disabled="true"] {
+  pointer-events: none;
+  opacity: .45;
+}
+
+.confirmation-card {
+  width: min(100%, 920px);
+  text-align: left;
+}
+
+.confirmation-card > h1,
+.confirmation-card > p,
+.confirmation-card > .order-number-pill,
+.confirmation-card > .payment-total,
+.confirmation-card > .status-row,
+.confirmation-card > .admin-state,
+.confirmation-card > .checkout-error {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.confirmation-card > .button {
+  margin-top: 24px;
+}
+
+.confirmation-grid {
+  margin-top: 26px;
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(260px, .8fr);
+  gap: 18px;
+}
+
+.confirmation-panel {
+  padding: 22px;
+}
+
+.confirmation-panel p {
+  margin-top: 10px;
+}
+
+.confirmation-payment {
+  margin-top: 18px;
+}
+
+.admin-body {
+  background: var(--cream);
+}
+
+.admin-page {
+  width: min(100%, 1180px);
+  margin: 0 auto;
+  padding: 40px 24px 80px;
+}
+
+.admin-hero {
+  padding: 26px 0 18px;
+}
+
+.admin-hero h1 {
+  margin: 0;
+  color: var(--navy);
+  font-family: "Zilla Slab", Georgia, serif;
+  font-size: clamp(2.2rem, 5vw, 4.4rem);
+  line-height: 1;
+}
+
+.admin-hero p:not(.policy-kicker) {
+  max-width: 680px;
+  margin-top: 12px;
+}
+
+.admin-toolbar {
+  margin: 18px 0;
+  padding: 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 18px;
+}
+
+.admin-filters {
+  margin-top: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.admin-filters button {
+  padding: 9px 12px;
+  border-radius: 999px;
+  background: var(--cream);
+  font-size: .8rem;
+}
+
+.admin-filters button.active {
+  background: var(--navy);
+  color: #fff;
+}
+
+.admin-state {
+  padding: 16px 0;
+  color: var(--muted);
+  font-weight: 700;
+}
+
+.admin-orders {
+  display: grid;
+  gap: 16px;
+}
+
+.admin-order-card {
+  padding: 22px;
+}
+
+.admin-order-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 16px;
+}
+
+.admin-order-head h2 {
+  margin: 8px 0 4px;
+  color: var(--navy);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 1.25rem;
+}
+
+.admin-order-head > strong {
+  color: var(--navy);
+  font-size: 1.35rem;
+}
+
+.status-pill {
+  display: inline-flex;
+  width: fit-content;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: var(--cream);
+  color: var(--navy);
+  font-size: .72rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+}
+
+.status-paid,
+.status-processing,
+.status-shipped {
+  background: #e7f7ee;
+  color: #16633b;
+}
+
+.status-cancelled,
+.status-refunded {
+  background: #f8e7e1;
+  color: #8c2d19;
+}
+
+.admin-order-grid {
+  display: grid;
+  grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr) minmax(0, 1fr);
+  gap: 18px;
+  padding: 18px 0;
+}
+
+.admin-order-grid p,
+.admin-order-grid ul {
+  margin-top: 8px;
+  color: var(--muted);
+  line-height: 1.55;
+}
+
+.admin-order-grid ul {
+  padding-left: 18px;
+}
+
+.admin-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.admin-actions button {
+  padding: 10px 12px;
+  border-radius: 999px;
+  background: var(--navy);
+  color: #fff;
+  font-size: .8rem;
+}
+
+.admin-actions button:disabled {
+  cursor: wait;
+  opacity: .5;
+}
+
 .gate-page {
   min-height: 100vh;
   background:
@@ -1953,6 +2284,16 @@ h1, h2, h3 {
   .checkout-summary-card {
     position: static;
   }
+  .cart-page-item,
+  .admin-order-grid,
+  .confirmation-grid {
+    grid-template-columns: 1fr;
+  }
+  .admin-toolbar,
+  .admin-order-head {
+    align-items: flex-start;
+    flex-direction: column;
+  }
   .gate-card {
     padding: 30px 20px;
   }
@@ -1978,6 +2319,29 @@ h1, h2, h3 {
   .checkout-summary-card,
   .payment-card {
     padding: 22px 18px;
+  }
+  .cart-page-item {
+    gap: 14px;
+    justify-items: start;
+  }
+  .cart-page-product {
+    width: 100%;
+  }
+  .cart-qty-control {
+    grid-template-columns: 38px 38px 38px;
+  }
+  .admin-page {
+    padding: 28px 18px 64px;
+  }
+  .admin-order-card,
+  .admin-toolbar,
+  .confirmation-panel,
+  .manual-payment-box {
+    padding: 18px;
+  }
+  .admin-actions button,
+  .admin-filters button {
+    width: 100%;
   }
   .payment-page {
     padding: 36px 18px;

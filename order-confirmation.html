@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Order Confirmation | Good Morning Peptides</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Zilla+Slab:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <script>(function(){var v=localStorage.getItem('gmp_verified');if(!v||Date.now()>Number(v)){window.location.replace('/index.html');}})();</script>
+  <div class="announcement"><span><strong>Included free:</strong> BAC water with every order.</span></div>
+  <header class="site-header">
+    <nav class="nav">
+      <a class="brand" href="/home.html" aria-label="Good Morning Peptides"><img class="brand-logo" src="/assets/GMPLogo.png" alt="" /><span class="brand-fallback"><span>good morning</span><span>peptides</span></span></a>
+      <div class="nav-links"><a href="/home.html">Home</a><a href="/products.html">Products</a><a href="/coa.html">COA</a><a href="/faq.html">FAQ</a></div>
+      <div class="nav-actions"><button class="cart-button" type="button" data-cart-open>Cart <span class="cart-count" data-cart-count>0</span></button><a class="button button-primary" href="/products.html">Shop now</a></div>
+    </nav>
+  </header>
+
+  <main class="payment-page confirmation-page" data-confirmation-page>
+    <section class="payment-card confirmation-card">
+      <p class="policy-kicker">ORDER CONFIRMATION</p>
+      <h1>Order received.</h1>
+      <p>Your order has been received. Payment instructions have been sent to <strong data-confirmation-email>your email</strong>.</p>
+      <p class="admin-state" data-confirmation-loading>Loading order details...</p>
+      <p class="checkout-error" data-confirmation-error hidden>We could not load this order. Check the order number in the URL or your email confirmation.</p>
+
+      <div data-confirmation-content hidden>
+        <div class="order-number-pill" data-confirmation-order>GMP-</div>
+        <div class="status-row"><span>Status</span><strong data-confirmation-status>Awaiting Payment</strong></div>
+        <div class="payment-total"><span>Total due</span><strong data-confirmation-total>$0.00</strong></div>
+
+        <div class="confirmation-grid">
+          <section class="confirmation-panel">
+            <p class="mini-label">Products Ordered</p>
+            <div data-confirmation-items></div>
+            <div class="summary-mini-line"><span>Subtotal</span><strong data-confirmation-subtotal>$0.00</strong></div>
+            <div class="summary-mini-line"><span>Shipping</span><strong data-confirmation-shipping-total>$0.00</strong></div>
+            <div class="summary-mini-line"><span>Tax</span><strong data-confirmation-tax>$0.00</strong></div>
+          </section>
+
+          <section class="confirmation-panel">
+            <p class="mini-label">Shipping Address</p>
+            <p data-confirmation-shipping></p>
+          </section>
+        </div>
+
+        <section class="manual-payment-box confirmation-payment">
+          <p class="mini-label">Manual Payment</p>
+          <h2>Payment instructions</h2>
+          <p>Your order will remain awaiting payment until payment is confirmed. Please include your order number with your payment when possible.</p>
+          <div class="payment-method-list" data-confirmation-instructions></div>
+        </section>
+      </div>
+
+      <a class="button button-primary" href="/products.html">Return to Products</a>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div><a class="brand" href="/home.html" aria-label="Good Morning Peptides"><img class="brand-logo" src="/assets/GMPLogo.png" alt="" /><span class="brand-fallback"><span>good morning</span><span>peptides</span></span></a><p>All products are sold strictly for research purposes only. Not for human or veterinary consumption. Must be 21+ to purchase. By using this site you agree to our <a href="/terms.html">Terms of Service</a>.</p></div>
+    <div><h3>Pages</h3><a href="/products.html">Products</a><a href="/coa.html">COA Lookup</a><a href="/faq.html">FAQ</a><a href="#">About Us</a><a href="#">Contact Us</a></div>
+    <div><h3>Legal</h3><a href="/terms.html">Terms of Service</a><a href="/privacy.html">Privacy Policy</a><a href="/disclaimer.html">Disclaimer</a><a href="/shipping.html">Shipping Policy</a><a href="/refund.html">Refund Policy</a></div>
+  </footer>
+  <div class="footer-bottom"><span></span><span></span><span>© 2025 Good Morning Peptides. All rights reserved.</span></div>
+  <div class="cart-drawer" data-cart-drawer aria-hidden="true"><div class="cart-panel"><button class="cart-close" type="button" data-cart-close>Close</button><h2>Your Cart</h2><div data-cart-items></div><div class="cart-total"><span>Total</span><strong data-cart-total>$0</strong></div><a class="button button-primary button-wide" href="/checkout.html">Checkout</a><p class="fine-print">Orders are submitted for manual payment review.</p></div></div>
+  <script src="/app.js?v=checkout-2"></script>
+</body>
+</html>

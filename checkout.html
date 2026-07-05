@@ -24,7 +24,7 @@
     <section class="checkout-hero">
       <p class="policy-kicker">MANUAL PAYMENT REVIEW</p>
       <h1>Checkout</h1>
-      <p>Your order will be created with payment pending verification. Orders process after payment is confirmed.</p>
+      <p>Place your order now and receive payment instructions by email. Your order will remain awaiting payment until payment is confirmed.</p>
     </section>
 
     <section class="checkout-shell" data-checkout-page>
@@ -56,13 +56,20 @@
           <label class="checkout-honeypot" aria-hidden="true">Website<input name="website" tabindex="-1" autocomplete="off" /></label>
         </section>
 
+        <section class="manual-payment-box">
+          <p class="mini-label">Payment Method</p>
+          <h2>Manual Payment</h2>
+          <p>Place your order now and receive payment instructions by email. No card details are collected on this site.</p>
+          <input type="hidden" name="paymentMethod" value="manual_payment" />
+        </section>
+
         <section class="checkout-attestation">
           <label><input name="researchAttestation" type="checkbox" required /> <span>I confirm these products are for laboratory research use only and are not intended for human or animal consumption.</span></label>
           <label><input name="policyAttestation" type="checkbox" required /> <span>I agree to the <a href="terms.html">Terms of Service</a>, <a href="privacy.html">Privacy Policy</a>, <a href="disclaimer.html">Disclaimer</a>, <a href="shipping.html">Shipping Policy</a>, and <a href="refund.html">Refund Policy</a>.</span></label>
         </section>
 
         <p class="checkout-error" data-checkout-error hidden>We could not submit your order. Please review your information and try again.</p>
-        <button class="button button-primary button-wide" type="submit" data-submit-order disabled>Submit Order</button>
+        <button class="button button-primary button-wide" type="submit" data-submit-order disabled>Place Order</button>
       </form>
 
       <aside class="checkout-summary-card">
@@ -72,8 +79,11 @@
           <a class="button button-primary button-wide" href="products.html">View Products</a>
         </div>
         <div data-checkout-summary></div>
-        <div class="checkout-total"><span>Total due</span><strong data-checkout-total>$0</strong></div>
-        <p class="fine-print">Payment instructions are sent after order submission. Do not send card details through this site.</p>
+        <div class="summary-mini-line"><span>Estimated subtotal</span><strong data-checkout-subtotal>$0.00</strong></div>
+        <div class="summary-mini-line"><span>Shipping</span><strong>Calculated at placement</strong></div>
+        <div class="summary-mini-line"><span>Tax</span><strong>Calculated at placement</strong></div>
+        <div class="checkout-total"><span>Estimated total</span><strong data-checkout-total>$0.00</strong></div>
+        <p class="fine-print">Final totals are calculated server-side from active product prices. Payment instructions are sent after order submission.</p>
       </aside>
     </section>
   </main>
@@ -85,6 +95,6 @@
   </footer>
   <div class="footer-bottom"><span></span><span></span><span>© 2025 Good Morning Peptides. All rights reserved.</span></div>
   <div class="cart-drawer" data-cart-drawer aria-hidden="true"><div class="cart-panel"><button class="cart-close" type="button" data-cart-close>Close</button><h2>Your Cart</h2><div data-cart-items></div><div class="cart-total"><span>Total</span><strong data-cart-total>$0</strong></div><a class="button button-primary button-wide" href="checkout.html">Checkout</a><p class="fine-print">Orders are submitted for manual payment review.</p></div></div>
-  <script src="app.js?v=checkout-1"></script>
+  <script src="app.js?v=checkout-2"></script>
 </body>
 </html>

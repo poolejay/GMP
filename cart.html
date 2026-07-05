@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Payment Pending | Good Morning Peptides</title>
+  <title>Cart | Good Morning Peptides</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Zilla+Slab:wght@700&display=swap" rel="stylesheet">
@@ -20,18 +20,28 @@
     </nav>
   </header>
 
-  <main class="payment-page">
-    <section class="payment-card" data-payment-page>
-      <p class="policy-kicker">PAYMENT PENDING VERIFICATION</p>
-      <h1>Order Received</h1>
-      <p>Your order has been created and is pending manual payment verification.</p>
-      <div class="order-number-pill" data-payment-order>Order number unavailable</div>
-      <div class="payment-total"><span>Total due</span><strong data-payment-total>$0</strong></div>
-      <p>Please check your email for payment instructions. Orders are reviewed and processed only after payment is confirmed.</p>
-      <div class="policy-callout"><strong>Payment memo:</strong> Include only your order number in the payment memo so we can match your payment to your order.</div>
-      <div class="payment-method-list" data-payment-methods></div>
-      <p class="fine-print">Products are supplied for laboratory research use only and are not intended for human or animal consumption.</p>
-      <a class="button button-primary" href="products.html">Return to Products</a>
+  <main class="checkout-page cart-page" data-cart-page>
+    <section class="checkout-hero">
+      <p class="policy-kicker">RESEARCH CATALOG</p>
+      <h1>Your cart</h1>
+      <p>Review your research materials before placing a manual-payment order.</p>
+    </section>
+
+    <section class="checkout-shell cart-shell">
+      <div class="checkout-form-card cart-page-card">
+        <div data-cart-page-empty hidden>
+          <p>Your cart is empty.</p>
+          <a class="button button-primary" href="products.html">Browse Products</a>
+        </div>
+        <div class="cart-page-items" data-cart-page-items></div>
+      </div>
+
+      <aside class="checkout-summary-card">
+        <p class="mini-label">Order Summary</p>
+        <div class="checkout-total"><span>Estimated subtotal</span><strong data-cart-page-total>$0.00</strong></div>
+        <a class="button button-primary button-wide" href="checkout.html" data-cart-checkout-link>Checkout</a>
+        <p class="fine-print">Final totals are calculated server-side when the order is placed.</p>
+      </aside>
     </section>
   </main>
 

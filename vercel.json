@@ -1,0 +1,12 @@
+{
+  "rewrites": [
+    {
+      "source": "/order-confirmation/:orderNumber",
+      "destination": "/order-confirmation.html"
+    },
+    {
+      "source": "/admin/orders",
+      "destination": "/api/admin/orders-page"
+    }
+  ]
+}
