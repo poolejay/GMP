@@ -1539,6 +1539,13 @@ h1, h2, h3 {
 .payment-page {
   padding: clamp(48px, 8vw, 84px) 28px;
 }
+.confirmation-page {
+  padding: 24px;
+}
+.confirmation-body .footer,
+.confirmation-body .footer-bottom {
+  display: none;
+}
 .payment-card {
   width: min(100%, 760px);
   margin: 0 auto;
@@ -1718,15 +1725,13 @@ h1, h2, h3 {
 }
 
 .confirmation-card {
-  width: min(100%, 920px);
+  width: min(100%, 1160px);
+  padding: 24px;
   text-align: left;
 }
 
 .confirmation-card > h1,
 .confirmation-card > p,
-.confirmation-card > .order-number-pill,
-.confirmation-card > .payment-total,
-.confirmation-card > .status-row,
 .confirmation-card > .admin-state,
 .confirmation-card > .checkout-error {
   text-align: center;
@@ -1734,27 +1739,124 @@ h1, h2, h3 {
   margin-right: auto;
 }
 
-.confirmation-card > .button {
-  margin-top: 24px;
+.confirmation-card > h1 {
+  font-size: clamp(2rem, 4vw, 3.35rem);
 }
 
-.confirmation-grid {
-  margin-top: 26px;
+.confirmation-card > p:not(.policy-kicker) {
+  margin-top: 8px;
+}
+
+.confirmation-card > .button {
+  margin: 18px auto 0;
+  display: flex;
+  width: fit-content;
+}
+
+.confirmation-content {
+  margin-top: 18px;
+}
+
+.confirmation-meta-grid {
   display: grid;
-  grid-template-columns: minmax(0, 1.2fr) minmax(260px, .8fr);
-  gap: 18px;
+  grid-template-columns: minmax(170px, auto) minmax(0, 1fr) minmax(0, 1fr);
+  gap: 12px;
+  align-items: stretch;
+}
+
+.confirmation-meta-grid .order-number-pill,
+.confirmation-meta-grid .payment-total,
+.confirmation-meta-grid .status-row {
+  width: 100%;
+  margin: 0;
+  min-height: 58px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--cream);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 14px;
+}
+
+.confirmation-meta-grid .order-number-pill {
+  justify-content: center;
+}
+
+.confirmation-meta-grid .payment-total {
+  border-top: 1px solid var(--line);
+}
+
+.confirmation-meta-grid .payment-total strong {
+  font-size: 1.2rem;
+}
+
+.confirmation-layout {
+  margin-top: 14px;
+  display: grid;
+  grid-template-columns: minmax(0, .9fr) minmax(360px, 1.1fr);
+  gap: 14px;
+  align-items: start;
+}
+
+.confirmation-detail-stack {
+  display: grid;
+  gap: 14px;
 }
 
 .confirmation-panel {
-  padding: 22px;
+  padding: 16px;
 }
 
 .confirmation-panel p {
-  margin-top: 10px;
+  margin-top: 8px;
+  font-size: .86rem;
 }
 
 .confirmation-payment {
-  margin-top: 18px;
+  margin-top: 0;
+  padding: 16px;
+}
+
+.confirmation-payment h2 {
+  font-size: 1.35rem;
+}
+
+.confirmation-payment > p:not(.mini-label) {
+  font-size: .86rem;
+}
+
+.confirmation-payment .payment-method-list {
+  margin: 14px 0 0;
+  gap: 8px;
+}
+
+.confirmation-payment .payment-method-card {
+  padding: 12px 14px;
+  display: grid;
+  grid-template-columns: 86px 1fr;
+  gap: 12px;
+  align-items: start;
+}
+
+.confirmation-payment .payment-method-card strong {
+  font-family: Inter, system-ui, sans-serif;
+  font-size: .9rem;
+}
+
+.confirmation-payment .payment-method-card p {
+  margin-top: 0;
+  font-size: .84rem;
+  line-height: 1.4;
+}
+
+.confirmation-panel .checkout-summary-line {
+  padding: 10px 0;
+}
+
+.confirmation-panel .summary-mini-line {
+  padding: 9px 0;
 }
 
 .admin-body {
@@ -2338,7 +2440,9 @@ h1, h2, h3 {
   }
   .cart-page-item,
   .admin-order-grid,
-  .confirmation-grid {
+  .confirmation-grid,
+  .confirmation-layout,
+  .confirmation-meta-grid {
     grid-template-columns: 1fr;
   }
   .admin-toolbar,
@@ -2401,6 +2505,12 @@ h1, h2, h3 {
   }
   .payment-page {
     padding: 36px 18px;
+  }
+  .confirmation-page {
+    padding: 24px 16px;
+  }
+  .confirmation-payment .payment-method-card {
+    grid-template-columns: 1fr;
   }
   .gate-shell {
     padding: 18px;

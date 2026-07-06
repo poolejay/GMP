@@ -7,9 +7,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Zilla+Slab:wght@700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/styles.css?v=checkout-3" />
+  <link rel="stylesheet" href="/styles.css?v=confirmation-compact" />
 </head>
-<body>
+<body class="confirmation-body">
   <script>(function(){var v=localStorage.getItem('gmp_verified');if(!v||Date.now()>Number(v)){window.location.replace('/index.html');}})();</script>
   <div class="announcement"><span><strong>Included free:</strong> BAC water with every order.</span></div>
   <header class="site-header">
@@ -28,32 +28,36 @@
       <p class="admin-state" data-confirmation-loading>Loading order details...</p>
       <p class="checkout-error" data-confirmation-error hidden>We could not load this order. Check the order number in the URL or your email confirmation.</p>
 
-      <div data-confirmation-content hidden>
-        <div class="order-number-pill" data-confirmation-order>GMP-</div>
-        <div class="status-row"><span>Status</span><strong data-confirmation-status>Awaiting Payment</strong></div>
-        <div class="payment-total"><span>Total due</span><strong data-confirmation-total>$0.00</strong></div>
-
-        <div class="confirmation-grid">
-          <section class="confirmation-panel">
-            <p class="mini-label">Products Ordered</p>
-            <div data-confirmation-items></div>
-            <div class="summary-mini-line"><span>Subtotal</span><strong data-confirmation-subtotal>$0.00</strong></div>
-            <div class="summary-mini-line"><span>Shipping</span><strong data-confirmation-shipping-total>$0.00</strong></div>
-            <div class="summary-mini-line"><span>Tax</span><strong data-confirmation-tax>$0.00</strong></div>
-          </section>
-
-          <section class="confirmation-panel">
-            <p class="mini-label">Shipping Address</p>
-            <p data-confirmation-shipping></p>
-          </section>
+      <div class="confirmation-content" data-confirmation-content hidden>
+        <div class="confirmation-meta-grid">
+          <div class="order-number-pill" data-confirmation-order>GMP-</div>
+          <div class="status-row"><span>Status</span><strong data-confirmation-status>Awaiting Payment</strong></div>
+          <div class="payment-total"><span>Total due</span><strong data-confirmation-total>$0.00</strong></div>
         </div>
 
-        <section class="manual-payment-box confirmation-payment">
-          <p class="mini-label">Manual Payment</p>
-          <h2>Payment instructions</h2>
-          <p>Your order will remain awaiting payment until payment is confirmed. Please include your order number with your payment when possible.</p>
-          <div class="payment-method-list" data-confirmation-instructions></div>
-        </section>
+        <div class="confirmation-layout">
+          <div class="confirmation-detail-stack">
+            <section class="confirmation-panel">
+              <p class="mini-label">Products Ordered</p>
+              <div data-confirmation-items></div>
+              <div class="summary-mini-line"><span>Subtotal</span><strong data-confirmation-subtotal>$0.00</strong></div>
+              <div class="summary-mini-line"><span>Shipping</span><strong data-confirmation-shipping-total>$0.00</strong></div>
+              <div class="summary-mini-line"><span>Tax</span><strong data-confirmation-tax>$0.00</strong></div>
+            </section>
+
+            <section class="confirmation-panel">
+              <p class="mini-label">Shipping Address</p>
+              <p data-confirmation-shipping></p>
+            </section>
+          </div>
+
+          <section class="manual-payment-box confirmation-payment">
+            <p class="mini-label">Manual Payment</p>
+            <h2>Payment instructions</h2>
+            <p>Your order remains awaiting payment until payment is confirmed. Include your order number when possible.</p>
+            <div class="payment-method-list" data-confirmation-instructions></div>
+          </section>
+        </div>
       </div>
 
       <a class="button button-primary" href="/products.html">Return to Products</a>
