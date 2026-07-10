@@ -3,7 +3,9 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>COA Lookup | Good Morning Peptides</title>
+  <title>Certificate Library | Good Morning Peptides</title>
+  <meta name="description" content="Browse batch Certificates of Analysis by product and lot number. Purity, test method, and release documentation for every research peptide lot." />
+  <link rel="icon" href="assets/GMPLogo.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Zilla+Slab:wght@700&display=swap" rel="stylesheet">
@@ -13,163 +15,140 @@
   <script>(function(){var v=localStorage.getItem('gmp_verified');if(!v||Date.now()>Number(v)){window.location.replace('index.html');}})();</script>
   <div class="announcement"><span><strong>Included free:</strong> BAC water with every order.</span></div>
   <header class="site-header"><nav class="nav"><a class="brand" href="home.html" aria-label="Good Morning Peptides"><img class="brand-logo" src="assets/GMPLogo.png" alt="" /><span class="brand-fallback"><span>good morning</span><span>peptides</span></span></a><div class="nav-links"><a href="home.html">Home</a><a href="products.html">Products</a><a href="coa.html">COA</a><a href="faq.html">FAQ</a></div><div class="nav-actions"><button class="cart-button" type="button" data-cart-open>Cart <span class="cart-count" data-cart-count>0</span></button><a class="button button-primary" href="products.html">Shop now</a></div></nav></header>
-  <main class="coa-page" data-coa-app>
+
+  <main class="coa-drive-page">
     <section class="page-hero coa-hero">
-      <p class="eyebrow">CERTIFICATE LOOKUP</p>
+      <p class="eyebrow">CERTIFICATE LIBRARY</p>
       <h1>Batch documentation.</h1>
-      <p class="lead">Select a product to view all available lot documentation and certificates of analysis.</p>
+      <p class="lead">Every published lot, organized by product. Open a folder and download the Certificate of Analysis for your exact batch.</p>
     </section>
 
-    <section class="coa-lookup-shell" aria-label="Certificate lookup">
-      <aside class="coa-sidebar" aria-label="Products">
-        <button class="coa-sidebar-item active" type="button" data-product="GLP-3RT">
-          <strong>GLP-3RT</strong>
-          <small>10MG &middot; 30MG &middot; 1 lot</small>
-        </button>
-        <button class="coa-sidebar-item" type="button" data-product="GLP-2TZ">
-          <strong>GLP-2TZ</strong>
-          <small>30MG &middot; 1 lot</small>
-        </button>
-        <button class="coa-sidebar-item" type="button" data-product="BPC-157">
-          <strong>BPC-157</strong>
-          <small>10MG &middot; 1 lot</small>
-        </button>
-        <button class="coa-sidebar-item" type="button" data-product="MOTS-c">
-          <strong>MOTS-c</strong>
-          <small>50MG &middot; 1 lot</small>
-        </button>
-        <button class="coa-sidebar-item" type="button" data-product="MT-2">
-          <strong>MT-2</strong>
-          <small>10MG &middot; 1 lot</small>
-        </button>
-        <button class="coa-sidebar-item" type="button" data-product="GHK-Cu">
-          <strong>GHK-Cu</strong>
-          <small>50MG &middot; 1 lot</small>
-        </button>
-      </aside>
+    <section class="coa-drive" data-coa-app>
+      <aside class="coa-folders" aria-label="Product folders" data-coa-folders></aside>
 
-      <section class="coa-panel">
-        <div class="coa-panel-header">
-          <h2 data-coa-product-name>GLP-3RT</h2>
-          <p data-coa-lot-count>1 lots on record</p>
-        </div>
-        <div class="coa-lots" data-coa-lots></div>
-      </section>
-    </section>
-
-    <div class="coa-modal-overlay" data-coa-modal hidden>
-      <div class="coa-modal" role="dialog" aria-modal="true" aria-labelledby="coa-modal-title">
-        <div class="coa-modal-top">
-          <div>
-            <h2 id="coa-modal-title" data-modal-product>GLP-3RT</h2>
-            <p data-modal-lot>GMP-2605-GLP3RT30</p>
+      <div class="coa-main">
+        <div class="coa-main-top">
+          <div class="coa-crumb" data-coa-crumb>All Certificates <span data-coa-count></span></div>
+          <div class="coa-search">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+            <input type="search" placeholder="Search lot or product…" aria-label="Search certificates" data-coa-search />
           </div>
-          <button class="coa-modal-close" type="button" aria-label="Close COA preview" data-coa-close><span class="ti-x" aria-hidden="true"></span></button>
         </div>
-        <div class="coa-modal-metrics">
-          <div><span>LOT</span><strong data-modal-metric-lot>GMP-2605-GLP3RT30</strong></div>
-          <div><span>PURITY</span><strong data-modal-purity>99.4%</strong></div>
-          <div><span>IDENTITY</span><strong data-modal-identity>Confirmed</strong></div>
-          <div><span>STATUS</span><strong data-modal-status>Released</strong></div>
-        </div>
-        <div class="coa-pdf-preview">
-          <span class="ti-file-type-pdf" aria-hidden="true"></span>
-          <p>PDF document loads here</p>
-        </div>
-        <div class="coa-modal-footer">
-          <a class="button button-secondary" href="#">Download PDF</a>
-          <a class="button button-primary" href="products.html" data-modal-shop>Shop GLP-3RT</a>
+        <div class="coa-table-scroll">
+          <div class="coa-table-head">
+            <span>Product</span><span>Lot #</span><span>Test Date</span><span>Purity</span><span>Method</span><span>Status</span><span style="justify-self:end;">File</span>
+          </div>
+          <div data-coa-rows></div>
         </div>
       </div>
-    </div>
+    </section>
   </main>
+
   <footer class="footer">
-    <div>
-      <a class="brand" href="home.html" aria-label="Good Morning Peptides"><img class="brand-logo" src="assets/GMPLogo.png" alt="" /><span class="brand-fallback"><span>good morning</span><span>peptides</span></span></a>
-      <p>All products are sold strictly for research purposes only. Not for human or veterinary consumption. Must be 21+ to purchase. By using this site you agree to our <a href="terms.html">Terms of Service</a>.</p>
-    </div>
+    <div><a class="brand" href="home.html" aria-label="Good Morning Peptides"><img class="brand-logo" src="assets/GMPLogo.png" alt="" /><span class="brand-fallback"><span>good morning</span><span>peptides</span></span></a><p>All products are sold strictly for research purposes only. Not for human or veterinary consumption. Must be 21+ to purchase. By using this site you agree to our <a href="terms.html">Terms of Service</a>.</p></div>
     <div><h3>Pages</h3><a href="products.html">Products</a><a href="coa.html">COA Lookup</a><a href="faq.html">FAQ</a><a href="#">About Us</a><a href="#">Contact Us</a></div>
     <div><h3>Legal</h3><a href="terms.html">Terms of Service</a><a href="privacy.html">Privacy Policy</a><a href="disclaimer.html">Disclaimer</a><a href="shipping.html">Shipping Policy</a><a href="refund.html">Refund Policy</a></div>
   </footer>
   <div class="footer-bottom"><span></span><span></span><span>© 2025 Good Morning Peptides. All rights reserved.</span></div>
   <div class="cart-drawer" data-cart-drawer aria-hidden="true"><div class="cart-panel"><button class="cart-close" type="button" data-cart-close>Close</button><h2>Your Cart</h2><div data-cart-items></div><div class="cart-total"><span>Total</span><strong data-cart-total>$0</strong></div><a class="button button-primary button-wide" href="checkout.html">Checkout</a><p class="fine-print">Orders are submitted for manual payment review.</p></div></div>
+
   <script>
-    const coaProducts = {
-      "GLP-3RT": [{ lot: "GMP-2605-GLP3RT30", date: "Jun 2025", strength: "30MG", purity: "99.4%", identity: "Confirmed", status: "Released" }],
-      "GLP-2TZ": [{ lot: "GMP-2605-GLP2TZ30", date: "Jun 2025", strength: "30MG", purity: "99.3%", identity: "Confirmed", status: "Released" }],
-      "BPC-157": [{ lot: "GMP-2605-BPC15710", date: "Jun 2025", strength: "10MG", purity: "99.0%", identity: "Confirmed", status: "Released" }],
-      "MOTS-c": [{ lot: "GMP-2605-MOTSC50", date: "Jun 2025", strength: "50MG", purity: "99.2%", identity: "Confirmed", status: "Released" }],
-      "MT-2": [{ lot: "GMP-2605-MT210", date: "Jun 2025", strength: "10MG", purity: "98.9%", identity: "Confirmed", status: "Released" }],
-      "GHK-Cu": [{ lot: "GMP-2605-GHKCU50", date: "Jun 2025", strength: "50MG", purity: "99.5%", identity: "Confirmed", status: "Released" }]
-    };
+    const foldersEl = document.querySelector('[data-coa-folders]');
+    const rowsEl = document.querySelector('[data-coa-rows]');
+    const crumbEl = document.querySelector('[data-coa-crumb]');
+    const countEl = document.querySelector('[data-coa-count]');
+    const searchEl = document.querySelector('[data-coa-search]');
 
-    const coaApp = document.querySelector("[data-coa-app]");
-    const productName = document.querySelector("[data-coa-product-name]");
-    const lotCount = document.querySelector("[data-coa-lot-count]");
-    const lotList = document.querySelector("[data-coa-lots]");
-    const modal = document.querySelector("[data-coa-modal]");
+    const ICON_FOLDER = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>';
+    const ICON_ALL = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16M4 12h16M4 19h16"/></svg>';
+    const ICON_FILE = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3h8l5 5v13H7z"/><path d="M15 3v5h5"/><path d="M9 13h6M9 17h4"/></svg>';
+    const ICON_DL = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12"/><path d="m7 11 5 5 5-5"/><path d="M5 21h14"/></svg>';
+    const ICON_EMPTY = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>';
 
-    function openCoaModal(product, lot) {
-      document.querySelector("[data-modal-product]").textContent = product;
-      document.querySelector("[data-modal-lot]").textContent = lot.lot;
-      document.querySelector("[data-modal-metric-lot]").textContent = lot.lot;
-      document.querySelector("[data-modal-purity]").textContent = lot.purity;
-      document.querySelector("[data-modal-identity]").textContent = lot.identity;
-      document.querySelector("[data-modal-status]").textContent = lot.status;
-      document.querySelector("[data-modal-shop]").textContent = `Shop ${product}`;
-      modal.hidden = false;
+    const state = { products: [], coas: [], folder: 'all', q: '' };
+
+    function esc(v){return String(v==null?'':v).replace(/[&<>"']/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c];});}
+
+    function fmtDate(d){
+      if(!d) return '—';
+      const parts = String(d).slice(0,10).split('-');
+      if(parts.length!==3) return esc(d);
+      const months=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+      return months[Number(parts[1])-1] + ' ' + Number(parts[2]) + ', ' + parts[0];
     }
 
-    function renderLots(product) {
-      const lots = coaProducts[product] || [];
-      productName.textContent = product;
-      lotCount.textContent = `${lots.length} lots on record`;
-      lotList.innerHTML = lots.map((lot, index) => `
-        <div class="coa-lot-row" role="button" tabindex="0" data-product="${product}" data-lot-index="${index}">
-          <span class="ti-file-certificate" aria-hidden="true"></span>
-          <div class="coa-lot-info">
-            <strong>${lot.lot}</strong>
-            <small>${lot.date} &middot; ${lot.strength}</small>
-          </div>
-          <div class="coa-purity"><strong>${lot.purity}</strong><span>PURITY</span></div>
-          <span class="coa-chip coa-chip-identity">${lot.identity}</span>
-          <span class="coa-chip coa-chip-status">${lot.status}</span>
-          <button class="button button-primary coa-view-button" type="button">View COA</button>
-        </div>
-      `).join("");
+    function filteredRows(){
+      let rows = state.coas;
+      if(state.folder !== 'all') rows = rows.filter(function(c){return c.product_id === state.folder;});
+      if(state.q){ const q = state.q.toLowerCase(); rows = rows.filter(function(c){return ((c.lot||'')+' '+(c.product_name||'')).toLowerCase().indexOf(q) !== -1;}); }
+      return rows;
     }
 
-    coaApp?.addEventListener("click", (event) => {
-      const sidebarItem = event.target.closest(".coa-sidebar-item");
-      if (sidebarItem) {
-        document.querySelectorAll(".coa-sidebar-item").forEach((item) => item.classList.remove("active"));
-        sidebarItem.classList.add("active");
-        renderLots(sidebarItem.dataset.product);
+    function renderFolders(){
+      const total = state.coas.length;
+      let html = '<p class="coa-folders-label">Products</p>';
+      html += '<button class="coa-folder' + (state.folder==='all'?' active':'') + '" data-folder="all">' + ICON_ALL + 'All Certificates<span class="count">' + total + '</span></button>';
+      html += state.products.map(function(p){
+        return '<button class="coa-folder' + (state.folder===p.id?' active':'') + '" data-folder="' + esc(p.id) + '">' + ICON_FOLDER + esc(p.name) + '<span class="count">' + (p.count||0) + '</span></button>';
+      }).join('');
+      foldersEl.innerHTML = html;
+    }
+
+    function renderMain(){
+      const rows = filteredRows();
+      const folderName = state.folder==='all' ? 'All Certificates' : ((state.products.find(function(p){return p.id===state.folder;})||{}).name || '');
+      crumbEl.childNodes[0].nodeValue = folderName + ' ';
+      countEl.textContent = rows.length + (rows.length===1?' certificate':' certificates');
+
+      if(!rows.length){
+        const msg = state.q ? 'No certificates match “' + esc(state.q) + '”.'
+          : (state.folder==='all' ? 'Certificates will appear here as batches are released.'
+             : 'No certificates published yet for ' + esc(folderName) + '.');
+        rowsEl.innerHTML = '<div class="coa-empty">' + ICON_EMPTY + '<strong>Nothing here yet</strong>' + msg + '</div>';
         return;
       }
 
-      const row = event.target.closest(".coa-lot-row");
-      if (row) {
-        const lots = coaProducts[row.dataset.product] || [];
-        openCoaModal(row.dataset.product, lots[Number(row.dataset.lotIndex)]);
-      }
-    });
+      rowsEl.innerHTML = rows.map(function(c){
+        const pending = String(c.status||'').toLowerCase() !== 'released';
+        return '<div class="coa-file-row">'
+          + '<div class="coa-file-name">' + ICON_FILE + '<span>' + esc(c.product_name) + '</span></div>'
+          + '<div class="coa-lot">' + esc(c.lot) + '</div>'
+          + '<div class="coa-cell-muted">' + fmtDate(c.test_date) + '</div>'
+          + '<div>' + (c.purity ? esc(c.purity) : '<span class="coa-cell-muted">—</span>') + '</div>'
+          + '<div class="coa-cell-muted">' + (c.method ? esc(c.method) : '—') + '</div>'
+          + '<div><span class="coa-status-pill' + (pending?' pending':'') + '">' + esc(c.status||'Released') + '</span></div>'
+          + '<a class="coa-dl" href="' + esc(c.file_url) + '" target="_blank" rel="noopener" download>' + ICON_DL + 'Download</a>'
+          + '</div>';
+      }).join('');
+    }
 
-    coaApp?.addEventListener("keydown", (event) => {
-      const row = event.target.closest(".coa-lot-row");
-      if (row && (event.key === "Enter" || event.key === " ")) {
-        event.preventDefault();
-        row.click();
-      }
-    });
+    function render(){ renderFolders(); renderMain(); }
 
-    modal?.addEventListener("click", (event) => {
-      if (event.target === modal || event.target.closest("[data-coa-close]")) {
-        modal.hidden = true;
-      }
+    foldersEl.addEventListener('click', function(ev){
+      const btn = ev.target.closest('[data-folder]');
+      if(!btn) return;
+      state.folder = btn.dataset.folder;
+      render();
     });
+    searchEl.addEventListener('input', function(){ state.q = searchEl.value.trim(); renderMain(); });
 
-    renderLots("GLP-3RT");
+    async function load(){
+      try {
+        const res = await fetch('/api/coas');
+        if(!res.ok) throw new Error('load failed');
+        const data = await res.json();
+        state.products = data.products || [];
+        state.coas = data.coas || [];
+      } catch(e){
+        state.products = [
+          {id:'glp-3rt',name:'GLP-3RT',count:0},{id:'glp-2tz',name:'GLP-2TZ',count:0},
+          {id:'ghk-cu',name:'GHK-Cu',count:0},{id:'mots-c',name:'MOTS-c',count:0}
+        ];
+        state.coas = [];
+      }
+      render();
+    }
+    load();
   </script>
   <script src="app.js?v=checkout-3"></script>
 </body>

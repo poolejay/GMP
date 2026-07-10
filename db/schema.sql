@@ -72,14 +72,15 @@ create table if not exists payment_proofs (
 
 insert into products (id, name, slug, description, price_cents, image_url, is_active)
 values
-  ('glp-3rt-10mg', 'GLP-3RT 10MG', 'glp-3rt-10mg', 'Research peptide supplied for laboratory catalog workflows. Lot-verified documentation available.', 7900, 'assets/3RT_10MG.png', true),
-  ('glp-3rt-30mg', 'GLP-3RT 30MG', 'glp-3rt-30mg', 'Research peptide supplied for laboratory catalog workflows. Lot-verified documentation available.', 14900, 'assets/3RT_30MG.png', true),
-  ('glp-2tz-20mg', 'GLP-2TZ 20MG', 'glp-2tz-20mg', 'Research peptide supplied with third-party analytical review and batch documentation.', 14900, 'assets/2TZ_30MG.png', true),
-  ('glp-2tz-30mg', 'GLP-2TZ 30MG', 'glp-2tz-30mg', 'Research peptide supplied with third-party analytical review and batch documentation.', 19900, 'assets/2TZ_30MG.png', true),
-  ('bpc-157-10mg', 'BPC-157 10MG', 'bpc-157-10mg', 'Synthetic research peptide supplied for laboratory research purposes only.', 8900, 'assets/BPC.png', true),
-  ('mt-2-10mg', 'MT-2 10MG', 'mt-2-10mg', 'Catalog research peptide with lot-specific documentation and analytical review.', 6900, null, true),
-  ('ghk-cu-50mg', 'GHK-Cu 50MG', 'ghk-cu-50mg', 'Catalog research peptide supplied with batch tracking and documentation.', 9900, null, true),
-  ('mots-c-50mg', 'MOTS-c 50MG', 'mots-c-50mg', 'Research peptide supplied with batch-specific COA access and third-party review.', 11900, 'assets/MOTS.png', true)
+  ('glp-3rt-10mg', 'GLP-3RT 10MG', 'glp-3rt-10mg', 'Research peptide supplied for laboratory catalog workflows. Lot-verified documentation available.', 6900, 'assets/products/glp-3rt-10mg-float.png', true),
+  ('glp-3rt-30mg', 'GLP-3RT 30MG', 'glp-3rt-30mg', 'Research peptide supplied for laboratory catalog workflows. Lot-verified documentation available.', 12900, 'assets/products/glp-3rt-30mg-float.png', true),
+  ('glp-2tz-20mg', 'GLP-2TZ 20MG', 'glp-2tz-20mg', 'Research peptide supplied with third-party analytical review and batch documentation.', 14900, 'assets/products/glp-2tz-float.png', false),
+  ('glp-2tz-30mg', 'GLP-2TZ 30MG', 'glp-2tz-30mg', 'Research peptide supplied with third-party analytical review and batch documentation.', 8900, 'assets/products/glp-2tz-float.png', true),
+  ('bpc-157-10mg', 'BPC-157 10MG', 'bpc-157-10mg', 'Synthetic research peptide supplied for laboratory research purposes only.', 8900, 'assets/BPC.png', false),
+  ('mt-2-10mg', 'MT-2 10MG', 'mt-2-10mg', 'Catalog research peptide with lot-specific documentation and analytical review.', 6900, null, false),
+  ('ghk-cu-50mg', 'GHK-Cu 50MG', 'ghk-cu-50mg', 'Catalog research peptide supplied with batch tracking and documentation.', 3900, 'assets/products/ghk-cu-float.png', true),
+  ('mots-c-10mg', 'MOTS-c 10MG', 'mots-c-10mg', 'Research peptide supplied with batch-specific COA access and third-party review.', 4900, 'assets/products/mots-c-float.png', true),
+  ('mots-c-50mg', 'MOTS-c 50MG', 'mots-c-50mg', 'Research peptide supplied with batch-specific COA access and third-party review.', 11900, 'assets/MOTS.png', false)
 on conflict (id) do update set
   name = excluded.name,
   slug = excluded.slug,
@@ -87,3 +88,19 @@ on conflict (id) do update set
   price_cents = excluded.price_cents,
   image_url = excluded.image_url,
   is_active = excluded.is_active;
+
+-- Certificates of Analysis (COA drive)
+create table if not exists coas (
+  id text primary key,
+  product_id text not null,
+  product_name text not null,
+  lot text not null,
+  test_date date,
+  purity text,
+  method text,
+  status text not null default 'Released',
+  file_url text not null,
+  file_name text,
+  created_at timestamptz not null default now()
+);
+create index if not exists coas_product_idx on coas (product_id);

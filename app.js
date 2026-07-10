@@ -9,6 +9,7 @@ const productIdByName = {
   "MT-2 10MG": "mt-2-10mg",
   "GHK-Cu 50MG": "ghk-cu-50mg",
   "MOTS-c 50MG": "mots-c-50mg",
+  "MOTS-c 10MG": "mots-c-10mg",
 };
 
 let cart = parseCart();
@@ -540,7 +541,7 @@ document.addEventListener("change", (event) => {
   if (!select) return;
   const card = select.closest("article");
   const priceCents = Number(select.selectedOptions[0]?.dataset.priceCents || Math.round(Number(select.selectedOptions[0]?.dataset.price || 0) * 100));
-  const priceNode = card?.querySelector(".card-info strong, .catalog-product-foot strong");
+  const priceNode = card?.querySelector(".card-info strong, .catalog-product-foot strong, [data-price-display]");
   const image = card?.querySelector("[data-product-image]");
   const imageSrc = select.selectedOptions[0]?.dataset.image;
   if (priceNode) priceNode.textContent = formatCents(priceCents);

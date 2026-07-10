@@ -7,6 +7,10 @@
     {
       "source": "/admin/orders",
       "destination": "/api/admin/orders-page"
+    },
+    {
+      "source": "/admin/coas",
+      "destination": "/api/admin/coas-page"
     }
   ]
 }

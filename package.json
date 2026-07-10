@@ -9,6 +9,7 @@
     "db:migrate": "node scripts/migrate.js"
   },
   "dependencies": {
+    "@vercel/blob": "^2.6.1",
     "pg": "^8.22.0",
     "resend": "^6.12.4"
   }

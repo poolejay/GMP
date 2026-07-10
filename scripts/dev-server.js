@@ -24,6 +24,7 @@ const mimeTypes = {
   ".gif": "image/gif",
   ".svg": "image/svg+xml",
   ".ico": "image/x-icon",
+  ".pdf": "application/pdf",
 };
 
 function api(modulePath) {
@@ -92,6 +93,25 @@ const server = http.createServer(async (req, res) => {
 
     if (pathname === "/admin/orders") {
       return handleApi(api("api/admin/orders-page.js"), req, res, url.searchParams);
+    }
+
+    if (pathname === "/api/coas") {
+      return handleApi(api("api/coas.js"), req, res, url.searchParams);
+    }
+
+    if (pathname === "/api/admin/coas") {
+      return handleApi(api("api/admin/coas.js"), req, res, url.searchParams);
+    }
+
+    const coaIdMatch = pathname.match(/^\/api\/admin\/coas\/([^/]+)$/);
+    if (coaIdMatch) {
+      const query = new URLSearchParams(url.searchParams);
+      query.set("id", decodeURIComponent(coaIdMatch[1]));
+      return handleApi(api("api/admin/coas/[id].js"), req, res, query);
+    }
+
+    if (pathname === "/admin/coas") {
+      return handleApi(api("api/admin/coas-page.js"), req, res, url.searchParams);
     }
 
     if (pathname.startsWith("/order-confirmation/")) {
