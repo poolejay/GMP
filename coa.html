@@ -24,11 +24,12 @@
     </section>
 
     <section class="coa-drive" data-coa-app>
-      <aside class="coa-folders" aria-label="Product folders" data-coa-folders></aside>
-
       <div class="coa-main">
         <div class="coa-main-top">
-          <div class="coa-crumb" data-coa-crumb>All Certificates <span data-coa-count></span></div>
+          <div class="coa-folder-picker">
+            <select class="coa-folder-select" data-coa-folder aria-label="Filter certificates by product"></select>
+            <span class="coa-count-label" data-coa-count></span>
+          </div>
           <div class="coa-search">
             <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
             <input type="search" placeholder="Search lot or product…" aria-label="Search certificates" data-coa-search />
@@ -45,17 +46,16 @@
   </main>
 
   <footer class="footer">
-    <div><a class="brand" href="home.html" aria-label="Good Morning Peptides"><img class="brand-logo" src="assets/GMPLogo.png" alt="" /><span class="brand-fallback"><span>good morning</span><span>peptides</span></span></a><p>All products are sold strictly for research purposes only. Not for human or veterinary consumption. Must be 21+ to purchase. By using this site you agree to our <a href="terms.html">Terms of Service</a>.</p></div>
-    <div><h3>Pages</h3><a href="products.html">Products</a><a href="coa.html">COA Lookup</a><a href="faq.html">FAQ</a><a href="#">About Us</a><a href="#">Contact Us</a></div>
+    <div><a class="brand" href="home.html" aria-label="Good Morning Peptides"><img class="brand-logo" src="assets/GMPLogo.png" alt="" /><span class="brand-fallback"><span>good morning</span><span>peptides</span></span></a><p>All products are sold strictly for research purposes only. Not for human or veterinary consumption. Must be 21+ to purchase.</p></div>
+    <div><h3>Pages</h3><a href="products.html">Products</a><a href="coa.html">COA Lookup</a><a href="faq.html">FAQ</a><a href="mailto:support@goodmorningpeptides.com">support@goodmorningpeptides.com</a></div>
     <div><h3>Legal</h3><a href="terms.html">Terms of Service</a><a href="privacy.html">Privacy Policy</a><a href="disclaimer.html">Disclaimer</a><a href="shipping.html">Shipping Policy</a><a href="refund.html">Refund Policy</a></div>
   </footer>
   <div class="footer-bottom"><span></span><span></span><span>© 2025 Good Morning Peptides. All rights reserved.</span></div>
   <div class="cart-drawer" data-cart-drawer aria-hidden="true"><div class="cart-panel"><button class="cart-close" type="button" data-cart-close>Close</button><h2>Your Cart</h2><div data-cart-items></div><div class="cart-total"><span>Total</span><strong data-cart-total>$0</strong></div><a class="button button-primary button-wide" href="checkout.html">Checkout</a><p class="fine-print">Orders are submitted for manual payment review.</p></div></div>
 
   <script>
-    const foldersEl = document.querySelector('[data-coa-folders]');
+    const selectEl = document.querySelector('[data-coa-folder]');
     const rowsEl = document.querySelector('[data-coa-rows]');
-    const crumbEl = document.querySelector('[data-coa-crumb]');
     const countEl = document.querySelector('[data-coa-count]');
     const searchEl = document.querySelector('[data-coa-search]');
 
@@ -84,20 +84,19 @@
       return rows;
     }
 
-    function renderFolders(){
+    function renderPicker(){
       const total = state.coas.length;
-      let html = '<p class="coa-folders-label">Products</p>';
-      html += '<button class="coa-folder' + (state.folder==='all'?' active':'') + '" data-folder="all">' + ICON_ALL + 'All Certificates<span class="count">' + total + '</span></button>';
+      let html = '<option value="all">All Certificates (' + total + ')</option>';
       html += state.products.map(function(p){
-        return '<button class="coa-folder' + (state.folder===p.id?' active':'') + '" data-folder="' + esc(p.id) + '">' + ICON_FOLDER + esc(p.name) + '<span class="count">' + (p.count||0) + '</span></button>';
+        return '<option value="' + esc(p.id) + '">' + esc(p.name) + ' (' + (p.count||0) + ')</option>';
       }).join('');
-      foldersEl.innerHTML = html;
+      selectEl.innerHTML = html;
+      selectEl.value = state.folder;
     }
 
     function renderMain(){
       const rows = filteredRows();
       const folderName = state.folder==='all' ? 'All Certificates' : ((state.products.find(function(p){return p.id===state.folder;})||{}).name || '');
-      crumbEl.childNodes[0].nodeValue = folderName + ' ';
       countEl.textContent = rows.length + (rows.length===1?' certificate':' certificates');
 
       if(!rows.length){
@@ -122,14 +121,9 @@
       }).join('');
     }
 
-    function render(){ renderFolders(); renderMain(); }
+    function render(){ renderPicker(); renderMain(); }
 
-    foldersEl.addEventListener('click', function(ev){
-      const btn = ev.target.closest('[data-folder]');
-      if(!btn) return;
-      state.folder = btn.dataset.folder;
-      render();
-    });
+    selectEl.addEventListener('change', function(){ state.folder = selectEl.value; renderMain(); });
     searchEl.addEventListener('input', function(){ state.q = searchEl.value.trim(); renderMain(); });
 
     async function load(){

@@ -5,3 +5,14 @@ node_modules/
 
 # Locally uploaded COA PDFs (dev only)
 assets/coa/
+.vercel
+.env*
+
+# Editor/OS + internal working files (not site assets)
+.DS_Store
+**/.DS_Store
+.claude/
+backups/
+GMP PRODUCT IMAGES/
+AUDIT_GMP.md
+CODEX_GMP_PROMPTS.md
