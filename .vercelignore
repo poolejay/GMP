@@ -1,0 +1,9 @@
+.git
+.local
+assets/coa
+GMP PRODUCT IMAGES
+backups
+.claude
+AUDIT_GMP.md
+CODEX_GMP_PROMPTS.md
+node_modules
