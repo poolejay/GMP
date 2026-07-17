@@ -2790,7 +2790,7 @@ h1, h2, h3 {
 .coa-search input:focus { border-color: rgba(12,2,71,.35); box-shadow: 0 0 0 4px rgba(12,2,71,.05); }
 .coa-search svg { position: absolute; left: 12px; top: 11px; width: 17px; height: 17px; color: var(--muted); fill: none; stroke: currentColor; stroke-width: 2; }
 .coa-table-scroll { overflow-x: auto; }
-.coa-table-head, .coa-file-row { display: grid; grid-template-columns: minmax(130px,1.5fr) minmax(105px,1.1fr) 96px 74px 100px 92px 118px; gap: 12px; align-items: center; padding: 13px 18px; min-width: 760px; }
+.coa-table-head, .coa-file-row { display: grid; grid-template-columns: minmax(120px,1.4fr) minmax(100px,1.05fr) 92px 84px 74px 92px 88px 116px; gap: 12px; align-items: center; padding: 13px 18px; min-width: 860px; }
 .coa-table-head { border-bottom: 1px solid var(--line); background: #fcfbf8; color: var(--muted); font-size: .68rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
 .coa-file-row { border-top: 1px solid var(--line); font-size: .86rem; transition: background .15s ease; }
 .coa-file-row:first-of-type { border-top: 0; }

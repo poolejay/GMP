@@ -18,7 +18,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Zilla+Slab:wght@700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=20260711b" />
+  <link rel="stylesheet" href="styles.css?v=20260711c" />
 </head>
 <body>
   <script>(function(){var v=localStorage.getItem('gmp_verified');if(!v||Date.now()>Number(v)){window.location.replace('index.html');}})();</script>
@@ -46,7 +46,7 @@
         </div>
         <div class="coa-table-scroll">
           <div class="coa-table-head">
-            <span>Product</span><span>Lot #</span><span>Test Date</span><span>Purity</span><span>Method</span><span>Status</span><span style="justify-self:end;">File</span>
+            <span>Product</span><span>Lot #</span><span>Test Date</span><span>Content</span><span>Purity</span><span>Method</span><span>Status</span><span style="justify-self:end;">File</span>
           </div>
           <div data-coa-rows></div>
         </div>
@@ -122,6 +122,7 @@
           + '<div class="coa-file-name">' + ICON_FILE + '<span>' + esc(c.product_name) + '</span></div>'
           + '<div class="coa-lot">' + esc(c.lot) + '</div>'
           + '<div class="coa-cell-muted">' + fmtDate(c.test_date) + '</div>'
+          + '<div>' + (c.mg ? '<strong style="color:var(--navy)">' + esc(c.mg) + '</strong>' : '<span class="coa-cell-muted">—</span>') + '</div>'
           + '<div>' + (c.purity ? esc(c.purity) : '<span class="coa-cell-muted">—</span>') + '</div>'
           + '<div class="coa-cell-muted">' + (c.method ? esc(c.method) : '—') + '</div>'
           + '<div><span class="coa-status-pill' + (pending?' pending':'') + '">' + esc(c.status||'Released') + '</span></div>'
@@ -153,6 +154,6 @@
     }
     load();
   </script>
-  <script src="app.js?v=20260711b"></script>
+  <script src="app.js?v=20260711c"></script>
 </body>
 </html>

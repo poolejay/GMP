@@ -35,6 +35,9 @@ function pageHtml() {
         <label class="checkout-field">Test date
           <input name="test_date" type="date" />
         </label>
+        <label class="checkout-field">Content (mg)
+          <input name="mg" placeholder="e.g. 10.8 mg" />
+        </label>
         <label class="checkout-field">Purity
           <input name="purity" placeholder="99.4%" />
         </label>
@@ -86,7 +89,7 @@ function pageHtml() {
         list.innerHTML = coas.map(function(c){
           return '<article class="admin-order-card" style="display:flex;justify-content:space-between;align-items:center;gap:18px;">'
             + '<div><strong>' + esc(c.product_name) + '</strong> · <span style="font-family:ui-monospace,Menlo,monospace;">' + esc(c.lot) + '</span>'
-            + '<p style="margin-top:6px;color:var(--muted);font-size:.84rem;">' + [c.test_date,c.purity,c.method,c.status].filter(Boolean).map(esc).join(' · ') + '</p></div>'
+            + '<p style="margin-top:6px;color:var(--muted);font-size:.84rem;">' + [c.test_date,c.mg,c.purity,c.method,c.status].filter(Boolean).map(esc).join(' · ') + '</p></div>'
             + '<div style="display:flex;gap:10px;">'
             + '<a class="button button-secondary" href="' + esc(c.file_url) + '" target="_blank" rel="noopener">View PDF</a>'
             + '<button class="button" style="background:#f8e7e1;color:#8c2d19;" data-del="' + esc(c.id) + '">Delete</button>'
@@ -109,6 +112,7 @@ function pageHtml() {
           product_id: form.product_id.value,
           lot: form.lot.value,
           test_date: form.test_date.value,
+          mg: form.mg.value,
           purity: form.purity.value,
           method: form.method.value,
           status: form.status.value,
