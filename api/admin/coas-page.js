@@ -33,7 +33,10 @@ function pageHtml() {
           <input name="lot" placeholder="GMP-2605-GLP3RT30" required />
         </label>
         <label class="checkout-field">Cap color
-          <select name="cap"><option value="">— none —</option><option>White</option><option>Green</option></select>
+          <select name="cap"><option value="">— none —</option><option>White</option><option>Clear</option><option>Silver</option><option>Green</option><option>Pink</option><option>Red</option><option>Blue</option><option>Light Blue</option><option>Black</option><option>Gold</option></select>
+        </label>
+        <label class="checkout-field">Crimp color
+          <select name="crimp"><option value="">— none —</option><option>Silver</option><option>Copper</option></select>
         </label>
         <label class="checkout-field">Test date
           <input name="test_date" type="date" />
@@ -91,7 +94,7 @@ function pageHtml() {
         state.textContent = coas.length ? (coas.length + ' certificate' + (coas.length===1?'':'s') + ' published') : 'No certificates uploaded yet.';
         list.innerHTML = coas.map(function(c){
           return '<article class="admin-order-card" style="display:flex;justify-content:space-between;align-items:center;gap:18px;">'
-            + '<div><strong>' + esc(c.product_name) + '</strong>' + (c.cap ? ' · ' + esc(c.cap) + ' cap' : '') + ' · <span style="font-family:ui-monospace,Menlo,monospace;">' + esc(c.lot) + '</span>'
+            + '<div><strong>' + esc(c.product_name) + '</strong>' + (c.cap ? ' · ' + esc(c.cap) + ' cap' : '') + (c.crimp ? ' · ' + esc(c.crimp) + ' crimp' : '') + ' · <span style="font-family:ui-monospace,Menlo,monospace;">' + esc(c.lot) + '</span>'
             + '<p style="margin-top:6px;color:var(--muted);font-size:.84rem;">' + [c.test_date,c.mg,c.purity,c.method,c.status].filter(Boolean).map(esc).join(' · ') + '</p></div>'
             + '<div style="display:flex;gap:10px;">'
             + '<a class="button button-secondary" href="' + esc(c.file_url) + '" target="_blank" rel="noopener">View PDF</a>'
@@ -116,6 +119,7 @@ function pageHtml() {
           lot: form.lot.value,
           test_date: form.test_date.value,
           cap: form.cap.value,
+          crimp: form.crimp.value,
           mg: form.mg.value,
           purity: form.purity.value,
           method: form.method.value,
@@ -141,13 +145,23 @@ function pageHtml() {
     list.addEventListener('click', async function(ev){
       const btn = ev.target.closest('[data-del]');
       if(!btn) return;
-      if(!confirm('Delete this certificate?')) return;
+      if(!confirm('Delete this certificate? This cannot be undone.')) return;
       btn.disabled = true;
+      btn.textContent = 'Deleting...';
       try {
         const res = await fetch('/api/admin/coas/' + encodeURIComponent(btn.dataset.del), {method:'DELETE'});
-        if(!res.ok) throw new Error('delete failed');
-        loadList();
-      } catch(e){ btn.disabled = false; }
+        const data = await res.json().catch(function(){return {};});
+        if(!res.ok) throw new Error(data.error || 'Delete failed');
+        // Remove the row immediately (storage takes a few seconds to propagate)
+        const card = btn.closest('.admin-order-card');
+        if(card) card.remove();
+        state.textContent = 'Deleted. Re-syncing...';
+        setTimeout(loadList, 2500);
+        setTimeout(loadList, 6000);
+      } catch(e){
+        btn.disabled = false; btn.textContent = 'Delete';
+        alert(e.message || 'Delete failed');
+      }
     });
 
     loadList();

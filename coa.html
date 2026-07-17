@@ -18,7 +18,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Zilla+Slab:wght@700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=20260711d" />
+  <link rel="stylesheet" href="styles.css?v=20260711e" />
 </head>
 <body>
   <script>(function(){var v=localStorage.getItem('gmp_verified');if(!v||Date.now()>Number(v)){window.location.replace('index.html');}})();</script>
@@ -86,6 +86,17 @@
       return months[Number(parts[1])-1] + ' ' + Number(parts[2]) + ', ' + parts[0];
     }
 
+    const CAP_COLORS = {
+      white:'#ffffff', clear:'#e7eef4', silver:'#c2c6cd', green:'#34a853',
+      pink:'#f57ea8', red:'#e23b3b', blue:'#2f6fed', 'light blue':'#7cc0f0',
+      black:'#1c1c30', gold:'#d4af37', copper:'#b87333'
+    };
+    function capChip(val, suffix){
+      if(!val) return '';
+      const hex = CAP_COLORS[String(val).toLowerCase()] || '#c2c6cd';
+      return '<span class="coa-cap"><span class="coa-dot" style="background:'+hex+'"></span>'+esc(val)+' '+suffix+'</span>';
+    }
+
     function filteredRows(){
       let rows = state.coas;
       if(state.folder !== 'all') rows = rows.filter(function(c){return c.product_id === state.folder;});
@@ -120,7 +131,7 @@
         const pending = String(c.status||'').toLowerCase() !== 'released';
         return '<div class="coa-file-row">'
           + '<div class="coa-file-name">' + ICON_FILE + '<div class="coa-name-stack"><span>' + esc(c.product_name) + '</span>'
-            + (c.cap ? '<span class="coa-cap ' + (String(c.cap).toLowerCase()==='green'?'green':'white') + '">' + esc(c.cap) + ' cap</span>' : '')
+            + ((c.cap||c.crimp) ? '<span class="coa-caps">' + capChip(c.cap, 'cap') + capChip(c.crimp, 'crimp') + '</span>' : '')
             + '</div></div>'
           + '<div class="coa-lot">' + esc(c.lot) + '</div>'
           + '<div class="coa-cell-muted">' + fmtDate(c.test_date) + '</div>'
@@ -156,6 +167,6 @@
     }
     load();
   </script>
-  <script src="app.js?v=20260711d"></script>
+  <script src="app.js?v=20260711e"></script>
 </body>
 </html>
