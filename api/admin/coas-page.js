@@ -39,7 +39,7 @@ function pageHtml() {
           <input name="purity" placeholder="99.4%" />
         </label>
         <label class="checkout-field">Test method
-          <input name="method" placeholder="HPLC + MS" />
+          <input name="method" placeholder="HPLC" value="HPLC" />
         </label>
         <label class="checkout-field">Status
           <select name="status"><option>Released</option><option>Pending</option></select>
@@ -119,8 +119,10 @@ function pageHtml() {
         const data = await res.json().catch(function(){return {};});
         if(!res.ok) throw new Error(data.error || 'Upload failed');
         form.reset();
-        msg.textContent = 'Uploaded.';
+        msg.textContent = 'Uploaded ✓ — it appears below and on the COA page within a few seconds.';
         loadList();
+        setTimeout(loadList, 2500);
+        setTimeout(loadList, 6000);
       } catch(e){
         msg.textContent = e.message || 'Upload failed';
       } finally {
