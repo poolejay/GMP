@@ -18,7 +18,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Zilla+Slab:wght@700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=20260711c" />
+  <link rel="stylesheet" href="styles.css?v=20260711d" />
 </head>
 <body>
   <script>(function(){var v=localStorage.getItem('gmp_verified');if(!v||Date.now()>Number(v)){window.location.replace('index.html');}})();</script>
@@ -119,7 +119,9 @@
       rowsEl.innerHTML = rows.map(function(c){
         const pending = String(c.status||'').toLowerCase() !== 'released';
         return '<div class="coa-file-row">'
-          + '<div class="coa-file-name">' + ICON_FILE + '<span>' + esc(c.product_name) + '</span></div>'
+          + '<div class="coa-file-name">' + ICON_FILE + '<div class="coa-name-stack"><span>' + esc(c.product_name) + '</span>'
+            + (c.cap ? '<span class="coa-cap ' + (String(c.cap).toLowerCase()==='green'?'green':'white') + '">' + esc(c.cap) + ' cap</span>' : '')
+            + '</div></div>'
           + '<div class="coa-lot">' + esc(c.lot) + '</div>'
           + '<div class="coa-cell-muted">' + fmtDate(c.test_date) + '</div>'
           + '<div>' + (c.mg ? '<strong style="color:var(--navy)">' + esc(c.mg) + '</strong>' : '<span class="coa-cell-muted">—</span>') + '</div>'
@@ -154,6 +156,6 @@
     }
     load();
   </script>
-  <script src="app.js?v=20260711c"></script>
+  <script src="app.js?v=20260711d"></script>
 </body>
 </html>

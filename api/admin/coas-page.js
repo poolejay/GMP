@@ -32,6 +32,9 @@ function pageHtml() {
         <label class="checkout-field">Lot number
           <input name="lot" placeholder="GMP-2605-GLP3RT30" required />
         </label>
+        <label class="checkout-field">Cap color
+          <select name="cap"><option value="">— none —</option><option>White</option><option>Green</option></select>
+        </label>
         <label class="checkout-field">Test date
           <input name="test_date" type="date" />
         </label>
@@ -88,7 +91,7 @@ function pageHtml() {
         state.textContent = coas.length ? (coas.length + ' certificate' + (coas.length===1?'':'s') + ' published') : 'No certificates uploaded yet.';
         list.innerHTML = coas.map(function(c){
           return '<article class="admin-order-card" style="display:flex;justify-content:space-between;align-items:center;gap:18px;">'
-            + '<div><strong>' + esc(c.product_name) + '</strong> · <span style="font-family:ui-monospace,Menlo,monospace;">' + esc(c.lot) + '</span>'
+            + '<div><strong>' + esc(c.product_name) + '</strong>' + (c.cap ? ' · ' + esc(c.cap) + ' cap' : '') + ' · <span style="font-family:ui-monospace,Menlo,monospace;">' + esc(c.lot) + '</span>'
             + '<p style="margin-top:6px;color:var(--muted);font-size:.84rem;">' + [c.test_date,c.mg,c.purity,c.method,c.status].filter(Boolean).map(esc).join(' · ') + '</p></div>'
             + '<div style="display:flex;gap:10px;">'
             + '<a class="button button-secondary" href="' + esc(c.file_url) + '" target="_blank" rel="noopener">View PDF</a>'
@@ -112,6 +115,7 @@ function pageHtml() {
           product_id: form.product_id.value,
           lot: form.lot.value,
           test_date: form.test_date.value,
+          cap: form.cap.value,
           mg: form.mg.value,
           purity: form.purity.value,
           method: form.method.value,
