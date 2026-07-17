@@ -53,11 +53,12 @@ function pageHtml() {
         <label class="checkout-field">Status
           <select name="status"><option>Released</option><option>Pending</option></select>
         </label>
-        <label class="checkout-field checkout-field-wide" style="grid-column:1/-1;">Certificate PDF
-          <input name="file" type="file" accept="application/pdf" required />
+        <label class="checkout-field checkout-field-wide" style="grid-column:1/-1;">Certificate PDF <span data-coa-file-hint class="fine-print" style="font-weight:600;"></span>
+          <input name="file" type="file" accept="application/pdf" />
         </label>
         <div style="grid-column:1/-1;display:flex;gap:12px;align-items:center;">
           <button class="button button-primary" type="submit" data-coa-submit>Upload certificate</button>
+          <button class="button button-secondary" type="button" data-coa-cancel hidden>Cancel edit</button>
           <span data-coa-msg class="fine-print"></span>
         </div>
       </form>
@@ -73,6 +74,10 @@ function pageHtml() {
     const msg = document.querySelector('[data-coa-msg]');
     const state = document.querySelector('[data-coa-state]');
     const list = document.querySelector('[data-coa-list]');
+    const cancelBtn = document.querySelector('[data-coa-cancel]');
+    const fileHint = document.querySelector('[data-coa-file-hint]');
+    let editingId = null;
+    let currentCoas = [];
 
     function esc(v){return String(v==null?'':v).replace(/[&<>"']/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c];});}
 
@@ -90,7 +95,8 @@ function pageHtml() {
         const res = await fetch('/api/admin/coas');
         if(!res.ok) throw new Error('load failed');
         const data = await res.json();
-        const coas = data.coas || [];
+        currentCoas = data.coas || [];
+        const coas = currentCoas;
         state.textContent = coas.length ? (coas.length + ' certificate' + (coas.length===1?'':'s') + ' published') : 'No certificates uploaded yet.';
         list.innerHTML = coas.map(function(c){
           return '<article class="admin-order-card" style="display:flex;justify-content:space-between;align-items:center;gap:18px;">'
@@ -98,6 +104,7 @@ function pageHtml() {
             + '<p style="margin-top:6px;color:var(--muted);font-size:.84rem;">' + [c.test_date,c.mg,c.purity,c.method,c.status].filter(Boolean).map(esc).join(' · ') + '</p></div>'
             + '<div style="display:flex;gap:10px;">'
             + '<a class="button button-secondary" href="' + esc(c.file_url) + '" target="_blank" rel="noopener">View PDF</a>'
+            + '<button class="button button-secondary" data-edit="' + esc(c.id) + '">Edit</button>'
             + '<button class="button" style="background:#f8e7e1;color:#8c2d19;" data-del="' + esc(c.id) + '">Delete</button>'
             + '</div></article>';
         }).join('');
@@ -106,14 +113,45 @@ function pageHtml() {
       }
     }
 
+    function startEdit(id){
+      const c = currentCoas.find(function(x){return x.id===id;});
+      if(!c) return;
+      editingId = id;
+      form.product_id.value = c.product_id || '';
+      form.lot.value = c.lot || '';
+      form.cap.value = c.cap || '';
+      form.crimp.value = c.crimp || '';
+      form.test_date.value = c.test_date || '';
+      form.mg.value = c.mg || '';
+      form.purity.value = c.purity || '';
+      form.method.value = c.method || '';
+      form.status.value = c.status || 'Released';
+      form.file.value = '';
+      fileHint.textContent = '— leave empty to keep current PDF';
+      submit.disabled = false;
+      submit.textContent = 'Save changes';
+      cancelBtn.hidden = false;
+      msg.textContent = 'Editing ' + esc(c.lot);
+      form.scrollIntoView({behavior:'smooth', block:'start'});
+    }
+
+    function cancelEdit(){
+      editingId = null;
+      form.reset();
+      fileHint.textContent = '';
+      submit.disabled = false;
+      submit.textContent = 'Upload certificate';
+      cancelBtn.hidden = true;
+    }
+    cancelBtn.addEventListener('click', function(){ cancelEdit(); msg.textContent = ''; });
+
     form.addEventListener('submit', async function(ev){
       ev.preventDefault();
       msg.textContent = '';
       const file = form.file.files[0];
-      if(!file){ msg.textContent = 'Choose a PDF.'; return; }
-      submit.disabled = true; submit.textContent = 'Uploading...';
+      if(!editingId && !file){ msg.textContent = 'Choose a PDF.'; return; }
+      submit.disabled = true; submit.textContent = editingId ? 'Saving...' : 'Uploading...';
       try {
-        const file_base64 = await fileToBase64(file);
         const payload = {
           product_id: form.product_id.value,
           lot: form.lot.value,
@@ -124,25 +162,30 @@ function pageHtml() {
           purity: form.purity.value,
           method: form.method.value,
           status: form.status.value,
-          file_name: file.name,
-          file_base64: file_base64,
         };
-        const res = await fetch('/api/admin/coas', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
+        if(file){
+          payload.file_name = file.name;
+          payload.file_base64 = await fileToBase64(file);
+        }
+        const url = editingId ? ('/api/admin/coas/' + encodeURIComponent(editingId)) : '/api/admin/coas';
+        const res = await fetch(url, {method: editingId ? 'PATCH' : 'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(payload)});
         const data = await res.json().catch(function(){return {};});
-        if(!res.ok) throw new Error(data.error || 'Upload failed');
-        form.reset();
-        msg.textContent = 'Uploaded ✓ — it appears below and on the COA page within a few seconds.';
+        if(!res.ok) throw new Error(data.error || 'Save failed');
+        const wasEditing = !!editingId;
+        cancelEdit();
+        msg.textContent = wasEditing ? 'Saved ✓ — updates below and on the COA page within a few seconds.' : 'Uploaded ✓ — it appears below and on the COA page within a few seconds.';
         loadList();
         setTimeout(loadList, 2500);
         setTimeout(loadList, 6000);
       } catch(e){
-        msg.textContent = e.message || 'Upload failed';
-      } finally {
-        submit.disabled = false; submit.textContent = 'Upload certificate';
+        msg.textContent = e.message || 'Save failed';
+        submit.disabled = false; submit.textContent = editingId ? 'Save changes' : 'Upload certificate';
       }
     });
 
     list.addEventListener('click', async function(ev){
+      const editBtn = ev.target.closest('[data-edit]');
+      if(editBtn){ startEdit(editBtn.dataset.edit); return; }
       const btn = ev.target.closest('[data-del]');
       if(!btn) return;
       if(!confirm('Delete this certificate? This cannot be undone.')) return;
